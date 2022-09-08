@@ -1,1 +1,1 @@
-# university-multithreaded-distributed-pr-labs
+# University multithreaded and distributed programming labs
