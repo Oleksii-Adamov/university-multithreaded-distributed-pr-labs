@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class Main {
 
@@ -35,10 +37,16 @@ public class Main {
         JSpinner spinboxRightThreadPriority = new JSpinner(new SpinnerNumberModel(5, 1, 10, 1));
         spinboxRightThreadPriority.setBounds(165, 105, 50, 40);
 
+        // defining threads
         Thread leftThread = new Thread(new SliderRunnable(slider, 10));
         leftThread.setDaemon(true);
         Thread rightThread = new Thread(new SliderRunnable(slider, 90));
         rightThread.setDaemon(true);
+
+        // adding change priority listeners to spinners
+        spinboxLeftThreadPriority.addChangeListener(new SpinnerChangeThreadPriorityListener(leftThread));
+        spinboxRightThreadPriority.addChangeListener(new SpinnerChangeThreadPriorityListener(rightThread));
+
         // threads start on btn click
         btn.addActionListener(e -> {
 

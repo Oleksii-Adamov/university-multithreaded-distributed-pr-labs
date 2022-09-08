@@ -10,8 +10,8 @@ public class SliderRunnable implements Runnable {
     }
     public void run() {
         while (!Thread.interrupted()) {
-            synchronized (slider) {
-                slider.setValue(value);
+            synchronized (this.slider) {
+                this.slider.setValue(this.value);
             }
         }
     }
