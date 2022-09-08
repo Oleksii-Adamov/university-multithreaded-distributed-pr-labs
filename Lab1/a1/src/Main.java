@@ -1,6 +1,4 @@
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 public class Main {
 
@@ -20,10 +18,15 @@ public class Main {
         panel.setLayout(null);
 
         JSlider slider = new JSlider(0, 100, 50);
+        slider.setPaintTrack(true);
+        slider.setPaintTicks(true);
+        slider.setPaintLabels(true);
+        slider.setMajorTickSpacing(10);
+        slider.setMinorTickSpacing(0);
         slider.setBounds(100, 20, 250, 40);
 
-        JButton btn = new JButton("Пуск");
-        btn.setBounds(10, 10, 80, 40);
+        JButton btnStart = new JButton("Пуск");
+        btnStart.setBounds(10, 10, 80, 40);
 
         JLabel labelLeftThreadPriority = new JLabel("\"Left(10)\" thead priority");
         labelLeftThreadPriority.setBounds(10, 60, 150, 40);
@@ -48,23 +51,23 @@ public class Main {
         spinboxRightThreadPriority.addChangeListener(new SpinnerChangeThreadPriorityListener(rightThread));
 
         // threads start on btn click
-        btn.addActionListener(e -> {
+        btnStart.addActionListener(e -> {
 
             // reading thread priorities
             int leftThreadPriority = getSpinnerValue(spinboxLeftThreadPriority);
             int rightThreadPriority = getSpinnerValue(spinboxRightThreadPriority);
 
-            // setting thread priorities
-            leftThread.setPriority(leftThreadPriority);
-            rightThread.setPriority(rightThreadPriority);
-
             // staring threads
             leftThread.start();
             rightThread.start();
+
+            // setting thread priorities
+            leftThread.setPriority(leftThreadPriority);
+            rightThread.setPriority(rightThreadPriority);
         });
 
         // setuping GUI
-        panel.add(btn);
+        panel.add(btnStart);
         panel.add(slider);
         panel.add(spinboxLeftThreadPriority);
         panel.add(labelLeftThreadPriority);
