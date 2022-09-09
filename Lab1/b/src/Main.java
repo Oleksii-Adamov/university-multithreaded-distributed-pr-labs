@@ -1,6 +1,4 @@
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class Main {
 
@@ -18,19 +16,19 @@ public class Main {
         slider.setPaintLabels(true);
         slider.setMajorTickSpacing(10);
         slider.setMinorTickSpacing(0);
-        slider.setBounds(100, 20, 250, 40);
+        slider.setBounds(10, 20, 300, 40);
 
         JButton btnStop1 = new JButton("СТОП 1");
-        btnStop1.setBounds(10, 60, 100, 40);
+        btnStop1.setBounds(10, 70, 100, 40);
 
         JButton btnStart1 = new JButton("ПУСК 1");
-        btnStart1.setBounds(110, 60, 100, 40);
+        btnStart1.setBounds(110, 70, 100, 40);
 
         JButton btnStop2 = new JButton("СТОП 2");
-        btnStop2.setBounds(10, 110, 100, 40);
+        btnStop2.setBounds(10, 120, 100, 40);
 
         JButton btnStart2 = new JButton("ПУСК 2");
-        btnStart2.setBounds(110, 110, 100, 40);
+        btnStart2.setBounds(110, 120, 100, 40);
 
         // defining threads
         ThreadSliderManager threadSliderManager1 = new ThreadSliderManager(slider, 10, Thread.MIN_PRIORITY);
