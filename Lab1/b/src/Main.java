@@ -30,7 +30,7 @@ public class Main {
         JButton btnStart2 = new JButton("ПУСК 2");
         btnStart2.setBounds(110, 120, 100, 40);
 
-        // defining threads
+        // defining thread managers
         ThreadSliderManager threadSliderManager1 = new ThreadSliderManager(slider, 10, Thread.MIN_PRIORITY);
 
         ThreadSliderManager threadSliderManager2 = new ThreadSliderManager(slider, 90, Thread.MAX_PRIORITY);
@@ -48,7 +48,7 @@ public class Main {
         panel.add(btnStop1);
         panel.add(btnStart1);
         panel.add(btnStop2);
-        panel.add(btnStart2);
+        panel.add(btnStart2)`;
         panel.add(slider);
 
         win.setContentPane(panel);
