@@ -1,6 +1,6 @@
 import java.util.concurrent.BlockingQueue;
 
-public class NechuporchukConsumer implements Runnable {
+public class NechuporchukConsumer extends Thread {
     private BlockingQueue<Integer> queue;
     private int poisonPill;
     private int sum = 0;
@@ -19,10 +19,16 @@ public class NechuporchukConsumer implements Runnable {
         while (!Thread.interrupted()) {
             try {
                 int taken = queue.take();
+                synchronized (System.out) {
+                    System.out.println("Nechuporchuk(3) takes " + taken);
+                }
                 if (taken != poisonPill) {
                     sum += taken;
                 }
                 else {
+                    synchronized (System.out) {
+                        System.out.println("Nechuporchuk(3) finished");
+                    }
                     Thread.currentThread().interrupt();
                 }
             } catch (InterruptedException e) {

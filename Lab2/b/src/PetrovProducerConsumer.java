@@ -19,11 +19,20 @@ public class PetrovProducerConsumer implements Runnable {
         while (!Thread.interrupted()) {
             try {
                 int taken = queueToTake.take();
+                synchronized (System.out) {
+                    System.out.println("Petrov(2) takes " + taken);
+                }
                 if (taken != poisonPillToConsume) {
                     queueToPut.put(taken);
+                    synchronized (System.out) {
+                        System.out.println("Petrov(2) puts " + taken);
+                    }
                 }
                 else {
                     queueToPut.put(poisonPillToProduce);
+                    synchronized (System.out) {
+                        System.out.println("Petrov(2) finished");
+                    }
                     Thread.currentThread().interrupt();
                 }
             } catch (InterruptedException e) {
