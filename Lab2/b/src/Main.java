@@ -20,13 +20,11 @@ public class Main {
         nechuporchukThread.setDaemon(true);
         nechuporchukThread.start();
 
-        while (nechuporchukThread.isAlive()) {
-            try {
-                Thread.sleep(1);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-                throw new RuntimeException(e);
-            }
+        try {
+            nechuporchukThread.join();
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new RuntimeException(e);
         }
         return nechuporchukThread.getSum();
     }
