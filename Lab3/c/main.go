@@ -27,6 +27,7 @@ func (pip *SmokersPipeline) mediator_routine(ch []chan int) {
 		pip.mut.Lock()
 		index := generator.Intn(len(ch))
 		println("Cigarette for ", index, " is ready")
+		// channel plays role of Mutex/Binary Semaphore and so guarantees that mediator cannot Lock mut, before smoker
 		ch[index] <- 1
 	}
 }
