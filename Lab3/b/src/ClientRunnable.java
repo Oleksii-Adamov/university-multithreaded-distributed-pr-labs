@@ -13,12 +13,10 @@ public class ClientRunnable implements Runnable{
     public void run() {
         try {
             barberShop.addClient(client);
-            client.binSem.acquire();
         }
         catch (InterruptedException e) {
             Thread.currentThread().interrupt();
             throw new RuntimeException(e);
         }
-        System.out.println("Client " + client.id + " leaved");
     }
 }

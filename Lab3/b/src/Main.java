@@ -20,7 +20,7 @@ public class Main {
         for (int i = 0; i < num_clients / 2; i++) {
             clientThreads[i].join();
         }
-        Thread.sleep(3000);
+        Thread.sleep(5000);
         for (int i = num_clients / 2; i < num_clients; i++) {
             Thread thread = new Thread(new ClientRunnable(i, barberShop));
             thread.setDaemon(true);

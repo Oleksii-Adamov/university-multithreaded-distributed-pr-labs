@@ -1,40 +1,33 @@
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.Semaphore;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class BarberShop {
-    private Queue<Client> clientQueue = new LinkedBlockingQueue<Client>();
-
-    public Semaphore barberBinSem = new Semaphore(1);
+    private Queue<Client> clientQueue = new LinkedList<>();
+    private ReentrantLock barberBinSem = new ReentrantLock();
+    Condition queueEmptyCondition = barberBinSem.newCondition();
 
     synchronized public void addClient(Client client) throws InterruptedException {
+        barberBinSem.lock();
         System.out.println("Client " + client.id + " is waiting in queue");
         clientQueue.add(client);
-        client.binSem.acquire();
-        if (clientQueue.size() == 1) {
-            System.out.println("Awake by " + client.id);
-            barberBinSem.release();
-        }
+        queueEmptyCondition.signal();
+        barberBinSem.unlock();
     }
 
     public void serveClient() throws InterruptedException {
-        if (clientQueue.isEmpty()) {
+        barberBinSem.lock();
+        while (clientQueue.isEmpty()) {
             System.out.println("Barber is sleeping");
-            // was a bug of sleeping and immidietly awake and the sleeping til notify, this while fixed it
-            while (clientQueue.isEmpty()) {
-                barberBinSem.acquire();
-            }
+            queueEmptyCondition.await();
             System.out.println("Barber awake");
         }
-        else {
-            Client client = clientQueue.remove();
-            // awaking client is not necessary
-            System.out.println("Serving client " + client.id);
-            Thread.sleep(2000);
-            System.out.println("Client " + client.id + " served");
-            client.binSem.release();
-        }
+        Client client = clientQueue.remove();
+        // awaking client is not necessary
+        System.out.println("Serving client " + client.id);
+        Thread.sleep(2000);
+        System.out.println("Client " + client.id + " served");
+        barberBinSem.unlock();
     }
 }

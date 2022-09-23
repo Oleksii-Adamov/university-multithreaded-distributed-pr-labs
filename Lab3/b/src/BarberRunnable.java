@@ -10,9 +10,7 @@ public class BarberRunnable implements Runnable{
     public void run() {
         while (!Thread.currentThread().isInterrupted()) {
             try {
-                barberShop.barberBinSem.acquire();
                 barberShop.serveClient();
-                barberShop.barberBinSem.release();
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
                 throw new RuntimeException(e);
