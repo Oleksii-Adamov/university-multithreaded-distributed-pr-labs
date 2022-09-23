@@ -2,12 +2,10 @@ package main
 
 import (
 	"math/rand"
-	"sync"
 	"time"
 )
 
 type SmokersPipeline struct {
-	mut        sync.Mutex
 	is_smoking bool
 	cond_chan  chan int
 }

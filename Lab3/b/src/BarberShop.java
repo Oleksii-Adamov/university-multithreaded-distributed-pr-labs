@@ -12,7 +12,9 @@ public class BarberShop {
         barberBinSem.lock();
         System.out.println("Client " + client.id + " is waiting in queue");
         clientQueue.add(client);
-        queueEmptyCondition.signal();
+        if (clientQueue.size() == 1) {
+            queueEmptyCondition.signal();
+        }
         barberBinSem.unlock();
     }
 
