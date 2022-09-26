@@ -1,0 +1,12 @@
+
+0
+java:S1220""Move this file to a named package.
+’
+java:S1130"wRemove the declaration of thrown exception 'java.lang.InterruptedException', as it cannot be thrown from method's body.(¦„ã±ùÿÿÿÿ
+`
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(¦„ã±ùÿÿÿÿ
+M	java:S106"9Replace this use of System.out or System.err by a logger.(ç¦Š	
+S	java:S106"9Replace this use of System.out or System.err by a logger.(¦Õâ’þÿÿÿÿ
+N	java:S106"9Replace this use of System.out or System.err by a logger.(ÍÖæ™
+S	java:S106"9Replace this use of System.out or System.err by a logger.(”¬÷¸ÿÿÿÿÿ
+S	java:S106 "9Replace this use of System.out or System.err by a logger.(à¬¢Òüÿÿÿÿ
