@@ -1,0 +1,10 @@
+
+0
+java:S1220""Move this file to a named package.
+W	java:S899"BDo something with the "boolean" value returned by "createNewFile".(§õ‰•
+N	java:S106"9Replace this use of System.out or System.err by a logger.(°¢øÕ
+M	java:S106""9Replace this use of System.out or System.err by a logger.(ÆÙ¡)
+Z	java:S1067"9Replace this use of System.out or System.err by a logger.(öû÷şúÿÿÿÿ8…ä¨¸0
+U	java:S106:"9Replace this use of System.out or System.err by a logger.(»Ô×8™üê¨¸0
+U	java:S106F"9Replace this use of System.out or System.err by a logger.(©ğû8Úşú¨¸0
+Z	java:S106]"9Replace this use of System.out or System.err by a logger.(åÒßùÿÿÿÿ8ÁÇü¨¸0

@@ -1,0 +1,9 @@
+
+`	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+0
+java:S1220""Move this file to a named package.
+[
+java:S1854"9Remove this useless assignment to local variable "names".(½ ô¯ûÿÿÿÿ8²¦ì¨¸0
+L
+java:S1481"*Remove this unused "names" local variable.(½ ô¯ûÿÿÿÿ8µ¦ì¨¸0
+W	java:S125"<This block of commented-out lines of code should be removed.(ð×äB8¶¦ì¨¸0
