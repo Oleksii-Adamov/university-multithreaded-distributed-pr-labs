@@ -1,10 +1,6 @@
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
 public class Main {
 
     public static void main(String[] args) throws InterruptedException {
-        System.out.println("Hello world!");
         Garden garden = new Garden(5, 5);
 
         Thread natureThread = new Thread(new NatureRunnable(garden));

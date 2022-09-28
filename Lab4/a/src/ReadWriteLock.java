@@ -8,7 +8,7 @@ public class ReadWriteLock {
     public void lockReadLock() throws InterruptedException {
         synchronized (syncObj) {
             while (writeLocked) {
-                wait();
+                syncObj.wait();
             }
             readers++;
         }
@@ -18,15 +18,15 @@ public class ReadWriteLock {
         synchronized (syncObj) {
             readers--;
             if (readers == 0) {
-                notifyAll();
+                syncObj.notifyAll();
             }
         }
     }
 
     public void lockWriteLock() throws InterruptedException {
         synchronized (syncObj) {
-            while (writeLocked && readers > 0) {
-                wait();
+            while (writeLocked || readers > 0) {
+                syncObj.wait();
             }
             writeLocked = true;
         }
@@ -35,7 +35,7 @@ public class ReadWriteLock {
     public void unlockWriteLock() {
         synchronized (syncObj) {
             writeLocked = false;
-            notifyAll();
+            syncObj.notifyAll();
         }
     }
 }
