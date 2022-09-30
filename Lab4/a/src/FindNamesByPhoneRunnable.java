@@ -15,9 +15,6 @@ public class FindNamesByPhoneRunnable implements Runnable{
     public void run() {
         try {
             List<String> names = database.findNamesByPhone(phone);
-//            for (String name : names) {
-//                System.out.println("Found " + name + " by " + phone);
-//            }
         } catch (IOException | InterruptedException e) {
             Thread.currentThread().interrupt();
             throw new RuntimeException(e);

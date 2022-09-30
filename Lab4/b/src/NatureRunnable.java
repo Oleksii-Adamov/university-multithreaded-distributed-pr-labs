@@ -19,7 +19,6 @@ public class NatureRunnable implements Runnable{
                 Thread.currentThread().interrupt();
                 throw new RuntimeException(e);
             }
-            System.out.println("Nature changed (" + i + ", " + j + ") cell to " + val);
         }
     }
 }

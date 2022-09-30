@@ -38,6 +38,7 @@ public class Garden {
         writeLock.lock();
         matrix[i][j] = val;
         Thread.sleep(3000);
+        System.out.println("Nature changed (" + i + ", " + j + ") cell to " + val);
         writeLock.unlock();
     }
 
@@ -52,6 +53,7 @@ public class Garden {
         writeLock.lock();
         matrix[i][j] += incVal;
         Thread.sleep(3000);
+        System.out.println("Gardener increased (" + i + ", " + j + ") cell by " + incVal);
         writeLock.unlock();
     }
 
@@ -76,6 +78,7 @@ public class Garden {
             }
             writer.write("\n");
         }
+        System.out.println("Wrote to file!");
         readLock.unlock();
     }
 }

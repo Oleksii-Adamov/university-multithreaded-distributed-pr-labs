@@ -27,7 +27,6 @@ public class FileMonitorRunnable implements Runnable {
                 Thread.currentThread().interrupt();
                 throw new RuntimeException(e);
             }
-            System.out.println("Wrote to file!");
         }
     }
 }

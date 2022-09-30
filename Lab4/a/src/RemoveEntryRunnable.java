@@ -15,7 +15,6 @@ public class RemoveEntryRunnable implements Runnable {
     public void run() {
         try {
             database.removeEntry(name, phone);
-            //System.out.println("Removed " + name + " - " + phone);
         } catch (IOException | InterruptedException e) {
             Thread.currentThread().interrupt();
             throw new RuntimeException(e);

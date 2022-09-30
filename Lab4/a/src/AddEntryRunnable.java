@@ -15,7 +15,6 @@ public class AddEntryRunnable implements Runnable {
     public void run() {
         try {
             database.addEntry(name, phone);
-            //System.out.println("Added " + name + " - " + phone);
         } catch (IOException | InterruptedException e) {
             Thread.currentThread().interrupt();
             throw new RuntimeException(e);

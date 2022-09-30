@@ -1,5 +1,3 @@
-import java.util.concurrent.ThreadLocalRandom;
-
 public class ScreenMonitorRunnable implements Runnable{
     private Garden garden;
 

@@ -6,18 +6,7 @@ import (
 	"time"
 )
 
-type Edge struct {
-	vertex string
-	cost   int
-}
-
-//type Vertex struct {
-//	name  string
-//	edges []Edge
-//}
-
 type Graph struct {
-	//vertices map[string]map[Edge]bool
 	vertices map[string]map[string]int
 	rwlock   sync.RWMutex
 	wg       sync.WaitGroup
@@ -36,8 +25,6 @@ func (graph *Graph) addEdge(vertex1 string, vertex2 string, cost int) {
 	defer graph.wg.Done()
 	graph.rwlock.Lock()
 	time.Sleep(3 * time.Second)
-	//graph.vertices[vertex1][Edge{vertex: vertex2, cost: cost}] = true
-	//graph.vertices[vertex2][Edge{vertex: vertex1, cost: cost}] = true
 	_, ok1 := graph.vertices[vertex1]
 	_, ok2 := graph.vertices[vertex2]
 	if ok1 && ok2 {
@@ -47,8 +34,6 @@ func (graph *Graph) addEdge(vertex1 string, vertex2 string, cost int) {
 	} else {
 		fmt.Println("Cannot add edge: ", vertex1, " ", vertex2, " ", cost)
 	}
-	//graph.vertices[vertex1] = append(graph.vertices[vertex1], Edge{vertex: vertex2, cost: cost})
-	//graph.vertices[vertex2] = append(graph.vertices[vertex2], Edge{vertex: vertex1, cost: cost})
 	graph.rwlock.Unlock()
 }
 
@@ -65,8 +50,6 @@ func (graph *Graph) removeEdge(vertex1 string, vertex2 string /*, cost int*/) {
 	} else {
 		fmt.Println("Cannot remove edge: ", vertex1, " ", vertex2)
 	}
-	//delete(graph.vertices[vertex1], Edge{vertex: vertex2, cost: cost})
-	//delete(graph.vertices[vertex2], Edge{vertex: vertex1, cost: cost})
 	graph.rwlock.Unlock()
 }
 
@@ -74,7 +57,6 @@ func (graph *Graph) addVertex(vertex string) {
 	defer graph.wg.Done()
 	graph.rwlock.Lock()
 	time.Sleep(3 * time.Second)
-	//graph.vertices[vertex] = make(map[Edge]bool)
 	_, ok := graph.vertices[vertex]
 	if !ok {
 		graph.vertices[vertex] = make(map[string]int)
@@ -155,12 +137,9 @@ func (graph *Graph) findWay(vertex1 string, vertex2 string) {
 				fmt.Println(vertex, " Cost = ", ret_way.cost)
 			}
 		}
-		//fmt.Println()
 	}
 
 	graph.rwlock.RUnlock()
-
-	//return ret_way
 }
 
 func main() {

@@ -20,7 +20,6 @@ public class GardenerRunnable implements Runnable {
                 Thread.currentThread().interrupt();
                 throw new RuntimeException(e);
             }
-            System.out.println("Gardener increased (" + i + ", " + j + ") cell by " + 10);
         }
     }
 }
