@@ -3,9 +3,16 @@ package main
 import (
 	"fmt"
 	"math/rand"
-	"reflect"
 	"sync"
 )
+
+func sum(arr []int) int {
+	sum := 0
+	for i := 0; i < len(arr); i++ {
+		sum += arr[i]
+	}
+	return sum
+}
 
 type Barrier struct {
 	arrays           [][]int
@@ -30,11 +37,14 @@ func (barrier *Barrier) await() {
 	barrier.count++
 	if barrier.count == barrier.numParties {
 		barrier.arraysEqual = true
-		for i := 0; i < len(barrier.arrays)-1; i++ {
-			if !reflect.DeepEqual(barrier.arrays[i], barrier.arrays[i+1]) {
+		prevSum := sum(barrier.arrays[0])
+		for i := 1; i < len(barrier.arrays); i++ {
+			curSum := sum(barrier.arrays[i])
+			if prevSum != curSum {
 				barrier.arraysEqual = false
 				break
 			}
+			prevSum = curSum
 		}
 		barrier.reset()
 		barrier.mut.Unlock()
@@ -71,7 +81,7 @@ func changeArray(arrIndex int, barrier *Barrier, wg *sync.WaitGroup) {
 }
 
 func main() {
-	barrier := makeBarrier([][]int{[]int{2, 1, 1, 2, 1}, []int{1, 1, 1, 1, 1}, []int{1, 1, 1, 1, 1}}, 3)
+	barrier := makeBarrier([][]int{[]int{1, 3, 1, 3, 1}, []int{1, 2, 1, 2, 1}, []int{4, 0, 1, 1, 1}}, 3)
 	var wg sync.WaitGroup
 	wg.Add(3)
 	go changeArray(0, barrier, &wg)
