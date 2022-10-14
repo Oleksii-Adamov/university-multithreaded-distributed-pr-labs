@@ -4,7 +4,9 @@
 #include "math.h"
 #include <random>
 #include <iostream>
-
+#include "util.h"
+#include "FoxAlgo.h"
+/*
 int ProcNum = 0; // Number of available processes
 int ProcRank = 0; // Rank of current process
 int GridSize; // Size of virtual processor grid
@@ -12,22 +14,6 @@ int GridCoords[2]; // Coordinates of current processor in grid
 MPI_Comm GridComm; // Grid communicator
 MPI_Comm ColComm; // Column communicator
 MPI_Comm RowComm; // Row communicator
-
-void copyArr(double* from, double* to, int size) {
-    for (int i = 0; i < size; i++) {
-        to[i] = from[i];
-    }
-}
-
-void copyMatrix(double* from, int from_size, double* to, int to_size,
-                int from_row_start, int from_column_start,
-                int to_row_start, int to_column_start, int num_row, int num_col) {
-    for (int i_from = from_row_start, i_to = to_row_start; i_to < to_row_start + num_row; i_from++, i_to++) {
-        for (int j_from = from_column_start, j_to = to_column_start; j_to < to_column_start + num_col; j_from++, j_to++) {
-            to[i_to * to_size + j_to] = from[i_from * from_size + j_from];
-        }
-    }
-}
 
 // Creation of two-dimensional grid communicator
 // and communicators for each row and each column of the grid
@@ -64,12 +50,6 @@ void RandomArr(double* arr, int size) {
 void RandomDataInitialization(double* pAMatrix, double* pBMatrix, int Size) {
     RandomArr(pAMatrix, Size * Size);
     RandomArr(pBMatrix, Size * Size);
-}
-
-void zeroFill(double* arr, int size) {
-    for (int i = 0; i < size; i++) {
-        arr[i] = 0.0;
-    }
 }
 
 // Function for memory allocation and data initialization
@@ -131,17 +111,6 @@ void ABlockCommunication (int iter, double *pAblock, double* pMatrixAblock, int 
     }
 // Block broadcasting
     MPI_Bcast(pAblock, BlockSize * BlockSize, MPI_DOUBLE, Pivot, RowComm);
-}
-
-void BlockMultiplication (double *pAblock, double *pBblock, double *pCblock, int BlockSize) {
-    for (int i=0; i<BlockSize; i++) {
-        for (int j=0; j<BlockSize; j++) {
-            double temp = 0;
-            for (int k=0; k<BlockSize; k++)
-                temp += pAblock [i*BlockSize + k] * pBblock [k*BlockSize + j];
-            pCblock [i*BlockSize + j] += temp;
-        }
-    }
 }
 
 // Cyclic shift of matrix B blocks in the process grid columns
@@ -217,53 +186,81 @@ void ProcessTermination(double* pAMatrix, double* pBMatrix, double* pCMatrix, do
         delete[] pCMatrix;
     }
 }
-
+*/
 int main(int argc, char * argv[]) {
-    double* pAMatrix; // The first argument of matrix multiplication
-    double* pBMatrix; // The second argument of matrix multiplication
-    double* pCMatrix; // The result matrix
-    int Size; // Size of matricies
-    int BlockSize; // Sizes of matrix blocks on current process
-    double *pAblock; // Initial block of matrix A on current process
-    double *pBblock; // Initial block of matrix B on current process
-    double *pCblock; // Block of result matrix C on current process
-    double *pMatrixAblock;
-    double Start, Finish, Duration;
+    int ProcNum = 0; // Number of available processes
+    int ProcRank = 0; // Rank of current process
+    int times = 100;
     setvbuf(stdout, 0, _IONBF, 0);
     MPI_Init(&argc, &argv);
     MPI_Comm_size(MPI_COMM_WORLD, &ProcNum);
     MPI_Comm_rank(MPI_COMM_WORLD, &ProcRank);
-    GridSize = sqrt((double) ProcNum);
-    if (ProcNum != GridSize*GridSize) {
-        if (ProcRank == 0) {
-            printf ("Number of processes must be a perfect square\n");
+
+//    CreateGridCommunicators();
+//    std::cout << "Created main communicators";
+
+
+    FoxAlgo foxAlgo;
+    foxAlgo.execute(times);
+    if (ProcRank == 0) {
+        if (foxAlgo.isCorrect()) {
+            std::cout << "Correct!" << std::endl;
+            std::cout << "Mean time = " << foxAlgo.getMeanTime() << " s" << std::endl;
+        } else {
+            std::cout << "Wrong!" << std::endl;
         }
     }
-    else {
-        if (ProcRank == 0)
-            printf("Parallel matrix multiplication program\n");
-        // Creating the cartesian grid, row and column communcators
-        CreateGridCommunicators();
-        // Memory allocation and initialization of matrix elements
-        ProcessInitialization(pAMatrix, pBMatrix, pCMatrix, pAblock, pBblock,
-                              pCblock, pMatrixAblock, Size, BlockSize);
-//        if (ProcRank == 0)
-//            std::cout << "Initialized" << std::endl;
-        //std::cout << ProcRank << " " << i << std::endl;
-        DataDistribution(pAMatrix, pBMatrix, pMatrixAblock, pBblock, Size,
-                         BlockSize);
-        //std::cout << ProcRank << " " << i << " Distributed" << std::endl;
-        // Execution of Fox method
-        ParallelResultCalculation(pAblock, pMatrixAblock, pBblock, pCblock, BlockSize);
-        //std::cout << ProcRank << " " << i << " Computed" << std::endl;
-        ResultCollection(pCMatrix, pCblock, Size, BlockSize);
-        //std::cout << ProcRank << " " << i << " Collected" << std::endl;
-        MPI_Barrier(MPI_COMM_WORLD);
-        TestResult(pAMatrix, pBMatrix, pCMatrix, Size);
-// Process Termination
-        ProcessTermination(pAMatrix, pBMatrix, pCMatrix, pAblock, pBblock,
-                           pCblock, pMatrixAblock);
-    }
+
     MPI_Finalize();
     return 0;
 }
+
+//int main(int argc, char * argv[]) {
+//    double* pAMatrix; // The first argument of matrix multiplication
+//    double* pBMatrix; // The second argument of matrix multiplication
+//    double* pCMatrix; // The result matrix
+//    int Size; // Size of matricies
+//    int BlockSize; // Sizes of matrix blocks on current process
+//    double *pAblock; // Initial block of matrix A on current process
+//    double *pBblock; // Initial block of matrix B on current process
+//    double *pCblock; // Block of result matrix C on current process
+//    double *pMatrixAblock;
+//    double Start, Finish, Duration;
+//    setvbuf(stdout, 0, _IONBF, 0);
+//    MPI_Init(&argc, &argv);
+//    MPI_Comm_size(MPI_COMM_WORLD, &ProcNum);
+//    MPI_Comm_rank(MPI_COMM_WORLD, &ProcRank);
+//    GridSize = sqrt((double) ProcNum);
+//    if (ProcNum != GridSize*GridSize) {
+//        if (ProcRank == 0) {
+//            printf ("Number of processes must be a perfect square\n");
+//        }
+//    }
+//    else {
+//        if (ProcRank == 0)
+//            printf("Parallel matrix multiplication program\n");
+//        // Creating the cartesian grid, row and column communcators
+//        CreateGridCommunicators();
+//        // Memory allocation and initialization of matrix elements
+//        ProcessInitialization(pAMatrix, pBMatrix, pCMatrix, pAblock, pBblock,
+//                              pCblock, pMatrixAblock, Size, BlockSize);
+////        if (ProcRank == 0)
+////            std::cout << "Initialized" << std::endl;
+//        //std::cout << ProcRank << " " << i << std::endl;
+//        DataDistribution(pAMatrix, pBMatrix, pMatrixAblock, pBblock, Size,
+//                         BlockSize);
+//        //std::cout << ProcRank << " " << i << " Distributed" << std::endl;
+//        // Execution of Fox method
+//        ParallelResultCalculation(pAblock, pMatrixAblock, pBblock, pCblock, BlockSize);
+//        //std::cout << ProcRank << " " << i << " Computed" << std::endl;
+//        ResultCollection(pCMatrix, pCblock, Size, BlockSize);
+//        //std::cout << ProcRank << " " << i << " Collected" << std::endl;
+//        MPI_Barrier(MPI_COMM_WORLD);
+//        TestResult(pAMatrix, pBMatrix, pCMatrix, Size);
+//// Process Termination
+//        ProcessTermination(pAMatrix, pBMatrix, pCMatrix, pAblock, pBblock,
+//                           pCblock, pMatrixAblock);
+//    }
+//    MPI_Finalize();
+//    return 0;
+//}
