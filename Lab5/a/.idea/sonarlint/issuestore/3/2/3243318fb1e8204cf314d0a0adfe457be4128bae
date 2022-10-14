@@ -1,0 +1,7 @@
+
+`	java:S112""FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+t	java:S127"XRefactor the code in order to not assign to this loop counter from within the loop body.(Ì‚ˆÌ8ÐÒÆôº0
+Q
+java:S1066"/Merge this if statement with the enclosing one.(²õ–Âùÿÿÿÿ8ÐÒÆôº0
+0
+java:S1220""Move this file to a named package.

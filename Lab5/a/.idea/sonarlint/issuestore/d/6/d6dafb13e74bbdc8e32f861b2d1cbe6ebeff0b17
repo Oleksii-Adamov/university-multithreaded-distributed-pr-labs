@@ -1,0 +1,5 @@
+
+0
+java:S1220""Move this file to a named package.
+|
+java:S2178"fCorrect this "&" to "&&" and extract the right operand to a variable if it should always be evaluated.(»êèØ
