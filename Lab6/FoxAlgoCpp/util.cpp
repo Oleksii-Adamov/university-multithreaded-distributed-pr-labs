@@ -23,17 +23,16 @@ void copyMatrix(double* from, int from_size, double* to, int to_size,
     }
 }
 
-void randomArr(double* arr, int size) {
+void randomArr(double* arr, int size, std::default_random_engine &re) {
     std::uniform_real_distribution<double> unif(-100.0,100.0);
-    std::default_random_engine re;
     for (int i = 0; i < size; i++) {
         arr[i] = unif(re);
     }
 }
 
-void randomDataInitialization(double* pAMatrix, double* pBMatrix, int Size) {
-    randomArr(pAMatrix, Size * Size);
-    randomArr(pBMatrix, Size * Size);
+void randomDataInitialization(double* pAMatrix, double* pBMatrix, int Size, std::default_random_engine &re) {
+    randomArr(pAMatrix, Size * Size, re);
+    randomArr(pBMatrix, Size * Size, re);
 }
 
 void BlockMultiplication (double *pAblock, double *pBblock, double *pCblock, int BlockSize) {
@@ -71,4 +70,14 @@ bool isMultiplicationCorrect(double* pAMatrix, double* pBMatrix, double* pCMatri
         }
     }
     return correct;
+}
+
+int cyclic_pos(int pos, int size) {
+    while (pos < 0) {
+        pos += size;
+    }
+    while (pos > size - 1) {
+        pos -= size;
+    }
+    return pos;
 }

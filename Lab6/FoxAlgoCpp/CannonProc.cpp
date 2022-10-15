@@ -1,69 +1,78 @@
 //
-// Created by lvler on 14.10.2022.
+// Created by lvler on 15.10.2022.
 //
 
-#include <iostream>
-#include "FoxProc.h"
+#include "CannonProc.h"
 #include "util.h"
 
-FoxProc::FoxProc(int Size, int GridSize) : Size(Size), GridSize(GridSize) {
+CannonProc::CannonProc(int Size, int GridSize) : Size(Size), GridSize(GridSize) {
     MPI_Comm_size(MPI_COMM_WORLD, &ProcNum);
     MPI_Comm_rank(MPI_COMM_WORLD, &ProcRank);
     BlockSize = Size / GridSize;
     pAblock = new double [BlockSize*BlockSize];
     pBblock = new double [BlockSize*BlockSize];
     pCblock = new double [BlockSize*BlockSize];
-    pMatrixAblock = new double [BlockSize*BlockSize];
     zeroFill(pCblock, BlockSize * BlockSize);
     createGridCommunicators();
 }
 
-FoxProc::~FoxProc() {
+CannonProc::~CannonProc() {
     delete[] pAblock;
     delete[] pBblock;
     delete[] pCblock;
-    delete[] pMatrixAblock;
 }
 
-void FoxProc::ABlockCommunication(int iter) {
+void CannonProc::ABlockCommunication(int iter) {
     // Defining the leading process of the process grid row
     int Pivot = (GridCoords[0] + iter) % GridSize;
 // Copying the transmitted block in a separate memory buffer
-    if (GridCoords[1] == Pivot) {
+    /*if (GridCoords[1] == Pivot) {
         copyArr(pMatrixAblock, pAblock, BlockSize * BlockSize);
-    }
+    }*/
 // Block broadcasting
     MPI_Bcast(pAblock, BlockSize * BlockSize, MPI_DOUBLE, Pivot, RowComm);
 }
 
-void FoxProc::BblockCommunication() {
+void CannonProc::BblockCommunication() {
     MPI_Status Status;
-    int NextProc = cyclic_pos(GridCoords[0] - 1, GridSize);
-    int PrevProc = cyclic_pos(GridCoords[0] + 1, GridSize);
+    int NextProc = cyclic_pos(GridCoords[0] + 1, GridSize);
+    int PrevProc = cyclic_pos(GridCoords[0] - 1, GridSize);
     MPI_Sendrecv_replace( pBblock, BlockSize*BlockSize, MPI_DOUBLE,
                           NextProc, 0, PrevProc, 0, ColComm, &Status);
 }
 
-void FoxProc::dataDistribution(double *pAMatrix, double *pBMatrix) {
+void CannonProc::dataDistribution(double *pAMatrix, double *pBMatrix) {
+    // initial (i,j) distribution
     if (ProcRank == 0) {
         for (int ProcRec = 1; ProcRec < ProcNum; ProcRec++) {
-            int row_start = (ProcRec / GridSize) * BlockSize, column_start = (ProcRec % GridSize) * BlockSize;
-            copyMatrix(pAMatrix, Size, pMatrixAblock, BlockSize, row_start, column_start, 0, 0, BlockSize, BlockSize);
+            int row_start = (ProcRec / 2) * BlockSize, column_start = (ProcRec % 2) * BlockSize;
+            copyMatrix(pAMatrix, Size, pAblock, BlockSize, row_start, column_start, 0, 0, BlockSize, BlockSize);
             copyMatrix(pBMatrix, Size, pBblock, BlockSize, row_start, column_start, 0, 0, BlockSize, BlockSize);
-            MPI_Send(pMatrixAblock, BlockSize * BlockSize, MPI_DOUBLE, ProcRec, 0, MPI_COMM_WORLD);
+            MPI_Send(pAblock, BlockSize * BlockSize, MPI_DOUBLE, ProcRec, 0, MPI_COMM_WORLD);
             MPI_Send(pBblock, BlockSize * BlockSize, MPI_DOUBLE, ProcRec, 0, MPI_COMM_WORLD);
         }
-        copyMatrix(pAMatrix, Size, pMatrixAblock, BlockSize, 0, 0, 0, 0, BlockSize, BlockSize);
+        copyMatrix(pAMatrix, Size, pAblock, BlockSize, 0, 0, 0, 0, BlockSize, BlockSize);
         copyMatrix(pBMatrix, Size, pBblock, BlockSize, 0, 0, 0, 0, BlockSize, BlockSize);
     }
     else {
         MPI_Status status;
-        MPI_Recv(pMatrixAblock, BlockSize * BlockSize, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, &status);
+        MPI_Recv(pAblock, BlockSize * BlockSize, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, &status);
         MPI_Recv(pBblock, BlockSize * BlockSize, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, &status);
     }
+    MPI_Barrier(MPI_COMM_WORLD);
+    // Cannon initialization
+    int AShift = GridCoords[0] - 1;
+    int ASenderProc = cyclic_pos(GridCoords[1] - AShift, GridSize);
+    int ARecProc = cyclic_pos(GridCoords[1] + AShift, GridSize);
+    int BShift = GridCoords[1] - 1;
+    int BSenderProc = cyclic_pos(GridCoords[0] - BShift, GridSize);
+    int BRecProc = cyclic_pos(GridCoords[0] + BShift, GridSize);
+    MPI_Status status;
+    MPI_Sendrecv_replace(pAblock, BlockSize*BlockSize, MPI_DOUBLE, ARecProc, 0, ASenderProc, 0, RowComm, &status);
+    MPI_Sendrecv_replace(pBblock, BlockSize*BlockSize, MPI_DOUBLE, BRecProc, 0, BSenderProc, 0, ColComm, &status);
 }
 
-void FoxProc::parallelResultCalculation() {
+void CannonProc::parallelResultCalculation() {
     for (int iter = 0; iter < GridSize; iter ++) {
         // Sending blocks of matrix A to the process grid rows
         ABlockCommunication (iter);
@@ -74,11 +83,11 @@ void FoxProc::parallelResultCalculation() {
     }
 }
 
-void FoxProc::resultCollection(double *pCMatrix) {
+void CannonProc::resultCollection(double *pCMatrix) {
     if (ProcRank == 0) {
         copyMatrix(pCblock, BlockSize, pCMatrix, Size, 0, 0, 0, 0, BlockSize, BlockSize);
         for (int ProcSender = 1; ProcSender < ProcNum; ProcSender++) {
-            int row_start = (ProcSender / GridSize) * BlockSize, column_start = (ProcSender % GridSize) * BlockSize;
+            int row_start = (ProcSender / 2) * BlockSize, column_start = (ProcSender % 2) * BlockSize;
             MPI_Status status;
             MPI_Recv(pCblock, BlockSize * BlockSize, MPI_DOUBLE, ProcSender, 0, MPI_COMM_WORLD, &status);
             copyMatrix(pCblock, BlockSize, pCMatrix, Size, 0, 0, row_start, column_start, BlockSize, BlockSize);
@@ -90,7 +99,7 @@ void FoxProc::resultCollection(double *pCMatrix) {
     zeroFill(pCblock, BlockSize * BlockSize);
 }
 
-void FoxProc::createGridCommunicators() {
+void CannonProc::createGridCommunicators() {
     int DimSize[2]; // Number of processes in each dimension of the grid
     int Periodic[2]; // =1, if the grid dimension should be periodic
     int Subdims[2]; // =1, if the grid dimension should be fixed
