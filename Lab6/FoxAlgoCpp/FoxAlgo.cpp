@@ -47,24 +47,21 @@ FoxAlgo::~FoxAlgo() {
 
 void FoxAlgo::execute(int times) {
     std::default_random_engine re;
-    TapeProc foxProc(Size/*, GridSize*/);
+    Proc* proc = new TapeProc(Size);
     for (int t = 0; t < times; t++) {
         if (ProcRank == 0) {
             randomDataInitialization(pAMatrix, pBMatrix, Size, re);
-            printMatrix(pAMatrix, Size, Size);
-            printMatrix(pBMatrix, Size, Size);
         }
         MPI_Barrier(MPI_COMM_WORLD);
         double start_time, end_time;
         if (ProcRank == 0)
             start_time = MPI_Wtime();
-        foxProc.dataDistribution(pAMatrix, pBMatrix);
+        proc->dataDistribution(pAMatrix, pBMatrix);
         // Execution of Fox method
-        foxProc.parallelResultCalculation();
-        foxProc.resultCollection(pCMatrix);
+        proc->parallelResultCalculation();
+        proc->resultCollection(pCMatrix);
         MPI_Barrier(MPI_COMM_WORLD);
         if (ProcRank == 0) {
-            printMatrix(pCMatrix, Size, Size);
             end_time = MPI_Wtime();
             mean_time += (end_time - start_time) / times;
             correct = correct && isMultiplicationCorrect(pAMatrix, pBMatrix, pCMatrix, Size);

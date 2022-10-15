@@ -5,7 +5,7 @@
 int main(int argc, char * argv[]) {
     int ProcNum = 0; // Number of available processes
     int ProcRank = 0; // Rank of current process
-    int times = 1;
+    int times = 100;
     setvbuf(stdout, 0, _IONBF, 0);
     MPI_Init(&argc, &argv);
     MPI_Comm_size(MPI_COMM_WORLD, &ProcNum);

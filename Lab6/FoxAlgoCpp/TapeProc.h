@@ -6,7 +6,9 @@
 #define FOXALGOCPP_TAPEPROC_H
 
 
-class TapeProc {
+#include "Proc.h"
+
+class TapeProc : public Proc {
 private:
     double* pRows;
     double* pCols;
@@ -23,11 +25,11 @@ public:
 
     ~TapeProc();
 
-    void dataDistribution(double* pAMatrix, double* pBMatrix);
+    void dataDistribution(double* pAMatrix, double* pBMatrix) override;
 
-    void parallelResultCalculation();
+    void parallelResultCalculation() override;
 
-    void resultCollection(double* pCMatrix);
+    void resultCollection(double* pCMatrix) override;
 };
 
 
