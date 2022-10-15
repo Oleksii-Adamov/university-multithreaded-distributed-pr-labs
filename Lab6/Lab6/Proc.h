@@ -7,12 +7,17 @@
 
 
 class Proc {
+protected:
+    int ProcNum; // Number of available processes
+    int ProcRank; // Rank of current process
 public:
     virtual void dataDistribution(double* pAMatrix, double* pBMatrix) = 0;
 
     virtual void parallelResultCalculation() = 0;
 
     virtual void resultCollection(double* pCMatrix) = 0;
+
+    virtual ~Proc() {}
 };
 
 

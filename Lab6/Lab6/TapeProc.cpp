@@ -20,6 +20,7 @@ TapeProc::~TapeProc() {
     delete[] pRows;
     delete[] pCols;
     delete[] pCRows;
+    std::cout << "Deleted\n";
 }
 
 void TapeProc::dataDistribution(double *pAMatrix, double *pBMatrix) {
@@ -83,4 +84,5 @@ void TapeProc::resultCollection(double *pCMatrix) {
     else {
         MPI_Send(pCRows, nData * Size, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
     }
+    MPI_Barrier(MPI_COMM_WORLD);
 }

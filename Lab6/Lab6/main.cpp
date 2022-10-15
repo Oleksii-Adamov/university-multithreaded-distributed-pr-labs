@@ -1,17 +1,14 @@
 #include "mpi.h"
 #include <iostream>
-#include "FoxAlgo.h"
+#include "Algo.h"
 
 int main(int argc, char * argv[]) {
-    int ProcNum = 0; // Number of available processes
     int ProcRank = 0; // Rank of current process
     int times = 100;
     setvbuf(stdout, 0, _IONBF, 0);
     MPI_Init(&argc, &argv);
-    MPI_Comm_size(MPI_COMM_WORLD, &ProcNum);
     MPI_Comm_rank(MPI_COMM_WORLD, &ProcRank);
-
-    FoxAlgo foxAlgo;
+    Algo foxAlgo(AlgoType::Seqential);
     foxAlgo.execute(times);
     if (ProcRank == 0) {
         if (foxAlgo.isCorrect()) {

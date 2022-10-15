@@ -2,14 +2,15 @@
 // Created by lvler on 15.10.2022.
 //
 
-#ifndef FOXALGOCPP_CANNONPROC_H
-#define FOXALGOCPP_CANNONPROC_H
+#ifndef FOXALGOCPP_BLOCKPROC_H
+#define FOXALGOCPP_BLOCKPROC_H
+
+
+#include "Proc.h"
 #include "mpi.h"
 
-class CannonProc {
-private:
-    int ProcNum = 0; // Number of available processes
-    int ProcRank = 0; // Rank of current process
+class BlockProc : public Proc {
+protected:
     int Size; // Size of matricies
     int BlockSize; // Sizes of matrix blocks on current process
     int GridSize; // Size of virtual processor grid
@@ -23,23 +24,20 @@ private:
 
     void createGridCommunicators();
 
-    void ABlockCommunication();
-
     void BblockCommunication();
 
-    int procRankByCoord(int row, int col);
-
 public:
-    CannonProc(int Size, int GridSize);
 
-    ~CannonProc();
+    BlockProc(int Size, int GridSize);
 
-    void dataDistribution(double* pAMatrix, double* pBMatrix);
+    virtual ~BlockProc();
 
-    void parallelResultCalculation();
+    virtual void dataDistribution(double* pAMatrix, double* pBMatrix) = 0;
 
-    void resultCollection(double* pCMatrix);
+    virtual void parallelResultCalculation()  = 0;
+
+    virtual void resultCollection(double* pCMatrix);
 };
 
 
-#endif //FOXALGOCPP_CANNONPROC_H
+#endif //FOXALGOCPP_BLOCKPROC_H

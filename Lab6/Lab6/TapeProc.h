@@ -15,15 +15,13 @@ private:
     double* pCRows;
     int nData; // number of rows/cols
     int Size;
-    int ProcNum = 0; // Number of available processes
-    int ProcRank = 0; // Rank of current process
 
     void colsCommunication();
 
 public:
     explicit TapeProc(int Size);
 
-    ~TapeProc();
+    virtual ~TapeProc();
 
     void dataDistribution(double* pAMatrix, double* pBMatrix) override;
 

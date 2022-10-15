@@ -1,30 +1,33 @@
-#ifndef FOXALGOCPP_FOXALGO_H
-#define FOXALGOCPP_FOXALGO_H
+#ifndef FOXALGOCPP_ALGO_H
+#define FOXALGOCPP_ALGO_H
 
 #include <stdexcept>
 #include "mpi.h"
 
-class FoxAlgo {
+enum class AlgoType {
+    Seqential,
+    Tape,
+    Fox,
+    Cannon
+};
+
+class Algo {
 private:
     double* pAMatrix; // The first argument of matrix multiplication (null for Proc != 0)
     double* pBMatrix; // The second argument of matrix multiplication (null for Proc != 0)
     double* pCMatrix; // The result matrix
     int Size; // Size of matricies
-    int BlockSize; // Sizes of matrix blocks on current process
     int ProcNum = 0; // Number of available processes
     int ProcRank = 0; // Rank of current process
     int GridSize; // Size of virtual processor grid
-    int GridCoords[2]; // Coordinates of current processor in grid
-    MPI_Comm GridComm; // Grid communicator
-    MPI_Comm ColComm; // Column communicator
-    MPI_Comm RowComm; // Row communicator
     double mean_time = 0.0;
     bool correct = true;
+    AlgoType algoType;
 
 public:
-    FoxAlgo();
+    Algo(AlgoType algoType);
 
-    ~FoxAlgo();
+    ~Algo();
 
     void execute(int times);
 
@@ -36,4 +39,4 @@ public:
 };
 
 
-#endif //FOXALGOCPP_FOXALGO_H
+#endif //FOXALGOCPP_ALGO_H
