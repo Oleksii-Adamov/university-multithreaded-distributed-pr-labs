@@ -5,12 +5,10 @@
 #include "FoxAlgo.h"
 #include "FoxProc.h"
 #include <cmath>
-#include <iostream>
 #include "util.h"
 
 FoxAlgo::FoxAlgo()
 {
-    std::cout << "FoxAlgo constructor beg";
     MPI_Comm_size(MPI_COMM_WORLD, &ProcNum);
     MPI_Comm_rank(MPI_COMM_WORLD, &ProcRank);
     GridSize = sqrt((double) ProcNum);
@@ -34,7 +32,6 @@ FoxAlgo::FoxAlgo()
         pCMatrix = new double [Size*Size];
     }
     MPI_Barrier(MPI_COMM_WORLD);
-    std::cout << "FoxAlgo constructor end";
 }
 
 FoxAlgo::~FoxAlgo() {
@@ -46,21 +43,17 @@ FoxAlgo::~FoxAlgo() {
 }
 
 void FoxAlgo::execute(int times) {
-    FoxProc foxProc(Size, BlockSize, GridSize);
+    FoxProc foxProc(Size, GridSize);
     for (int t = 0; t < times; t++) {
         if (ProcRank == 0)
             randomDataInitialization(pAMatrix, pBMatrix, Size);
         double start_time, end_time;
         if (ProcRank == 0)
             start_time = MPI_Wtime();
-        std::cout << ProcRank << std::endl;
         foxProc.dataDistribution(pAMatrix, pBMatrix);
-        std::cout << ProcRank << "Distributed" << std::endl;
         // Execution of Fox method
         foxProc.parallelResultCalculation();
-        std::cout << ProcRank << "Computed" << std::endl;
         foxProc.resultCollection(pCMatrix);
-        std::cout << ProcRank << "Collected" << std::endl;
         MPI_Barrier(MPI_COMM_WORLD);
         if (ProcRank == 0) {
             end_time = MPI_Wtime();

@@ -17,6 +17,8 @@ void randomDataInitialization(double* pAMatrix, double* pBMatrix, int Size);
 
 void BlockMultiplication (double *pAblock, double *pBblock, double *pCblock, int BlockSize);
 
+void printMatrix(double* matrix, int size);
+
 bool isMultiplicationCorrect(double* pAMatrix, double* pBMatrix, double* pCMatrix, int Size);
 
 #endif //FOXALGOCPP_UTIL_H

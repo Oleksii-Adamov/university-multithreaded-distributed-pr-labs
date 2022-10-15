@@ -2,14 +2,13 @@
 // Created by lvler on 14.10.2022.
 //
 
-#include <iostream>
 #include "FoxProc.h"
 #include "util.h"
 
-FoxProc::FoxProc(int Size, int BlockSize, int GridSize) : Size(Size), BlockSize(BlockSize) {
+FoxProc::FoxProc(int Size, int GridSize) : Size(Size), GridSize(GridSize) {
     MPI_Comm_size(MPI_COMM_WORLD, &ProcNum);
     MPI_Comm_rank(MPI_COMM_WORLD, &ProcRank);
-    std::cout << ProcRank << "\n";
+    BlockSize = Size / GridSize;
     pAblock = new double [BlockSize*BlockSize];
     pBblock = new double [BlockSize*BlockSize];
     pCblock = new double [BlockSize*BlockSize];
@@ -101,7 +100,6 @@ void FoxProc::createGridCommunicators() {
     Periodic[0] = 0;
     Periodic[1] = 0;
     // Creation of the Cartesian communicator
-    std::cout << "Creating";
     MPI_Cart_create(MPI_COMM_WORLD, 2, DimSize, Periodic, 1, &GridComm);
     // Determination of the cartesian coordinates for every process
     MPI_Cart_coords(GridComm, ProcRank, 2, GridCoords);

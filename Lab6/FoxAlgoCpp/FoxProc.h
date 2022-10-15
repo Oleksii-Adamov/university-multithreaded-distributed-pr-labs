@@ -30,7 +30,7 @@ private:
     void BblockCommunication();
 
 public:
-    FoxProc(int Size, int BlockSize, int GridSize);
+    FoxProc(int Size, int GridSize);
 
     ~FoxProc();
 

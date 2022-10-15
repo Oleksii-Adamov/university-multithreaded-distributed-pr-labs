@@ -1,3 +1,4 @@
+#include <iostream>
 #include "util.h"
 
 void zeroFill(double* arr, int size) {
@@ -44,6 +45,16 @@ void BlockMultiplication (double *pAblock, double *pBblock, double *pCblock, int
             pCblock [i*BlockSize + j] += temp;
         }
     }
+}
+
+void printMatrix(double* matrix, int size) {
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            std::cout << matrix[i*size + j] << " ";
+        }
+        std::cout << std::endl;
+    }
+    std::cout << std::endl;
 }
 
 bool isMultiplicationCorrect(double* pAMatrix, double* pBMatrix, double* pCMatrix, int Size) {
