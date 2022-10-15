@@ -23,9 +23,11 @@ private:
 
     void createGridCommunicators();
 
-    void ABlockCommunication (int iter);
+    void ABlockCommunication();
 
     void BblockCommunication();
+
+    int procRankByCoord(int row, int col);
 
 public:
     CannonProc(int Size, int GridSize);

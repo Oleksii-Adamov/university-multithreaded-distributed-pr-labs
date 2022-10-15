@@ -7,6 +7,7 @@
 #include <cmath>
 #include <iostream>
 #include "util.h"
+#include "CannonProc.h"
 
 FoxAlgo::FoxAlgo()
 {
@@ -45,7 +46,7 @@ FoxAlgo::~FoxAlgo() {
 
 void FoxAlgo::execute(int times) {
     std::default_random_engine re;
-    FoxProc foxProc(Size, GridSize);
+    CannonProc foxProc(Size, GridSize);
     for (int t = 0; t < times; t++) {
         if (ProcRank == 0) {
             randomDataInitialization(pAMatrix, pBMatrix, Size, re);
