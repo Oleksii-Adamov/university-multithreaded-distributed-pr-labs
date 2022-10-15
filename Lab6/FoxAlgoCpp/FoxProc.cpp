@@ -69,8 +69,11 @@ void FoxProc::parallelResultCalculation() {
         ABlockCommunication (iter);
         // Block multiplication
         BlockMultiplication(pAblock, pBblock, pCblock, BlockSize);
-        // Cyclic shift of blocks of matrix B in process grid columns
-        BblockCommunication();
+
+        if (iter < GridSize - 1) {
+            // Cyclic shift of blocks of matrix B in process grid columns
+            BblockCommunication();
+        }
     }
 }
 

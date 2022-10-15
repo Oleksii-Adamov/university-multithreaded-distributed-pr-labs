@@ -78,10 +78,12 @@ void CannonProc::parallelResultCalculation() {
     for (int iter = 0; iter < GridSize; iter ++) {
         // Block multiplication
         BlockMultiplication(pAblock, pBblock, pCblock, BlockSize);
-        // Cyclic shift of blocks of matrix A in process grid rows
-        ABlockCommunication();
-        // Cyclic shift of blocks of matrix B in process grid columns
-        BblockCommunication();
+        if (iter < GridSize - 1) {
+            // Cyclic shift of blocks of matrix A in process grid rows
+            ABlockCommunication();
+            // Cyclic shift of blocks of matrix B in process grid columns
+            BblockCommunication();
+        }
     }
 }
 

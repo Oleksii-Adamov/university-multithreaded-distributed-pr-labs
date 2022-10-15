@@ -8,6 +8,7 @@
 #include <iostream>
 #include "util.h"
 #include "CannonProc.h"
+#include "TapeProc.h"
 
 FoxAlgo::FoxAlgo()
 {
@@ -25,9 +26,9 @@ FoxAlgo::FoxAlgo()
         while (Size%GridSize != 0);
     }
     MPI_Bcast(&Size, 1, MPI_INT, 0, MPI_COMM_WORLD);
-    if (ProcNum != GridSize*GridSize) {
+   /* if (ProcNum != GridSize*GridSize) {
         throw std::invalid_argument("Number of processes must be a perfect square");
-    }
+    }*/
     if (ProcRank == 0) {
         pAMatrix = new double [Size*Size];
         pBMatrix = new double [Size*Size];
@@ -46,10 +47,12 @@ FoxAlgo::~FoxAlgo() {
 
 void FoxAlgo::execute(int times) {
     std::default_random_engine re;
-    CannonProc foxProc(Size, GridSize);
+    TapeProc foxProc(Size/*, GridSize*/);
     for (int t = 0; t < times; t++) {
         if (ProcRank == 0) {
             randomDataInitialization(pAMatrix, pBMatrix, Size, re);
+            printMatrix(pAMatrix, Size, Size);
+            printMatrix(pBMatrix, Size, Size);
         }
         MPI_Barrier(MPI_COMM_WORLD);
         double start_time, end_time;
@@ -61,6 +64,7 @@ void FoxAlgo::execute(int times) {
         foxProc.resultCollection(pCMatrix);
         MPI_Barrier(MPI_COMM_WORLD);
         if (ProcRank == 0) {
+            printMatrix(pCMatrix, Size, Size);
             end_time = MPI_Wtime();
             mean_time += (end_time - start_time) / times;
             correct = correct && isMultiplicationCorrect(pAMatrix, pBMatrix, pCMatrix, Size);
