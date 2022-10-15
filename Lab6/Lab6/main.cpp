@@ -8,7 +8,7 @@ int main(int argc, char * argv[]) {
     setvbuf(stdout, 0, _IONBF, 0);
     MPI_Init(&argc, &argv);
     MPI_Comm_rank(MPI_COMM_WORLD, &ProcRank);
-    Algo foxAlgo(AlgoType::Seqential);
+    Algo foxAlgo(AlgoType::Cannon);
     foxAlgo.execute(times);
     if (ProcRank == 0) {
         if (foxAlgo.isCorrect()) {

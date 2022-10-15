@@ -20,7 +20,6 @@ TapeProc::~TapeProc() {
     delete[] pRows;
     delete[] pCols;
     delete[] pCRows;
-    std::cout << "Deleted\n";
 }
 
 void TapeProc::dataDistribution(double *pAMatrix, double *pBMatrix) {

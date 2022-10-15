@@ -89,7 +89,7 @@ void Algo::execute(int times) {
         if (ProcRank == 0) {
             end_time = MPI_Wtime();
             mean_time += (end_time - start_time) / times;
-            correct = correct && isMultiplicationCorrect(pAMatrix, pBMatrix, pCMatrix, Size);
+            //correct = correct && isMultiplicationCorrect(pAMatrix, pBMatrix, pCMatrix, Size);
         }
     }
     delete proc;
