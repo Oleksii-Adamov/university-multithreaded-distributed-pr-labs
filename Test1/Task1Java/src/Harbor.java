@@ -1,14 +1,12 @@
 import java.util.concurrent.*;
 
 public class Harbor {
-    private int numDocks;
 
     private Semaphore docksSem;
 
     private BlockingQueue<Integer> cargoQueue;
 
     public Harbor(int numDocks, int capacity, int[] cargoArr) throws InterruptedException {
-        this.numDocks = numDocks;
         this.docksSem = new Semaphore(numDocks);
         this.cargoQueue = new ArrayBlockingQueue<>(capacity);
         for (int cargo : cargoArr) {
@@ -45,7 +43,7 @@ public class Harbor {
                     Thread.sleep(500);
                     Integer cargo = this.cargoQueue.take();
                     ship.putCargo(cargo);
-                    System.out.println(cargo + " give to ship " + ship.getId());
+                    System.out.println(cargo + " given to ship " + ship.getId());
                     curNumToTake--;
                 }
             } catch (InterruptedException e) {
