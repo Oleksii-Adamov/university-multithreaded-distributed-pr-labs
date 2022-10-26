@@ -1,0 +1,11 @@
+<!ELEMENT map (country)*>
+<!ELEMENT country (city)*>
+<!ATTLIST country
+        id CDATA #REQUIRED
+        name CDATA #REQUIRED>
+<!ELEMENT city (#PCDATA)>
+<!ATTLIST city
+        count CDATA #REQUIRED
+        id CDATA #REQUIRED
+        iscap CDATA #REQUIRED
+        name CDATA #REQUIRED>
