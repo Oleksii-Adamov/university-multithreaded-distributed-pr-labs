@@ -1,74 +1,101 @@
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.ErrorHandler;
-import org.xml.sax.SAXException;
-import org.w3c.dom.Document;
-import org.xml.sax.SAXParseException;
-import org.xml.sax.helpers.DefaultHandler;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.File;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Collection;
+import java.util.Objects;
+import java.util.Scanner;
 
 public class Main {
+
+    private static Country queryCountryFromUser(Scanner scanner) {
+        Country country = new Country();
+        System.out.print("code: ");
+        country.code = Integer.parseInt(scanner.nextLine());
+        System.out.print("name: ");
+        country.name = scanner.nextLine();
+        return country;
+    }
+    private static City queryCityFromUser(Scanner scanner) {
+        City city = new City();
+        System.out.print("code: ");
+        city.code = Integer.parseInt(scanner.nextLine());
+        System.out.print("name: ");
+        city.name = scanner.nextLine();
+        System.out.print("iscap: ");
+        city.isCapital = Boolean.parseBoolean(scanner.nextLine());
+        System.out.print("count: ");
+        city.count = Integer.parseInt(scanner.nextLine());
+        System.out.print("country code: ");
+        city.countryCode = Integer.parseInt(scanner.nextLine());
+        return city;
+    }
+    private static int queryCodeFromUser(Scanner scanner) {
+        System.out.print("code: ");
+        return Integer.parseInt(scanner.nextLine());
+    }
+
+    private static String queryFileNameFromUser(Scanner scanner) {
+        System.out.print("file name: ");
+        return scanner.nextLine();
+    }
+
+    private static void printIsSuccess(boolean isSuccess) {
+        if (isSuccess) {
+            System.out.println("Success!");
+        }
+        else {
+            System.out.println("Failure!");
+        }
+    }
+
+    private static <T extends Entity> void printEntityIterable(Collection<T> entities) {
+        System.out.println(entities.size());
+        for (T entity : entities) {
+            entity.print();
+            System.out.println();
+        }
+    }
     public static void main(String[] args) throws IOException {
-        System.out.println("Hello world!");
-        DocumentBuilder db = null;
-        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        dbf.setValidating(true);
-        try {
-            db = dbf.newDocumentBuilder();
-            db.setErrorHandler(new ErrorHandler() {
-                @Override
-                public void error(SAXParseException e) throws SAXException {
-                    throw new SAXException("Error: " + "Line" + e.getLineNumber() + ": " + e.getMessage());
-                }
-                @Override
-                public void fatalError(SAXParseException e) throws SAXException {
-                    throw new SAXException("Fatal error: " + "Line" + e.getLineNumber() + ": " + e.getMessage());
-                }
+        System.out.println("Commands:");
+        System.out.println("DB");
+        System.out.println("XML");
+        System.out.println("quit");
+        Scanner scanner = new Scanner( System.in );
+        String command = scanner.nextLine();
+        while (!Objects.equals(command, "quit")) {
+            System.out.println("Commands:");
+            System.out.println("addCountry");
+            System.out.println("addCity");
+            System.out.println("delCity");
+            System.out.println("delCountry");
+            System.out.println("updCity");
+            System.out.println("updCountry");
+            System.out.println("getCountry");
+            System.out.println("getCity");
+            System.out.println("getCountries");
+            System.out.println("getCities");
+            System.out.println("toXML");
+            System.out.println("quit");
 
-                @Override
-                public void warning(SAXParseException e) throws SAXException {
-                    System.out.print("XML parsing warning: ");
-                    System.out.print("Line" + e.getLineNumber() + ": ");
-                    System.out.println(e.getMessage());
+            command = scanner.nextLine();
+            Map map = new MapXML("input.xml");
+            while (!Objects.equals(command, "quit")) {
+                switch (command) {
+                    case "addCountry" -> printIsSuccess(map.addCountry(queryCountryFromUser(scanner)));
+                    case "addCity" -> printIsSuccess(map.addCity(queryCityFromUser(scanner)));
+                    case "delCity" -> printIsSuccess(map.delCity(queryCodeFromUser(scanner)));
+                    case "delCountry" -> printIsSuccess(map.delCountry(queryCodeFromUser(scanner)));
+                    case "updCity" -> printIsSuccess(map.updCity(queryCityFromUser(scanner)));
+                    case "updCountry" -> printIsSuccess(map.updCountry(queryCountryFromUser(scanner)));
+                    case "getCountry" -> map.getCountry(queryCodeFromUser(scanner)).print();
+                    case "getCity" -> map.getCity(queryCodeFromUser(scanner)).print();
+                    case "getCountries" -> printEntityIterable(map.getCountries());
+                    case "getCities" -> printEntityIterable(map.getCities(queryCodeFromUser(scanner)));
+                    case "toXML" -> map.toXML(queryFileNameFromUser(scanner));
+                    //default -> System.out.println("Wrong command!");
+                    //default -> ;
                 }
-            });
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        }
-        Document doc = null;
-        try {
-            assert db != null;
-            doc = db.parse(new File("input.xml"));
-        } catch (IOException | SAXException e) {
-            throw new RuntimeException(e);
-        }
-        Element root = doc.getDocumentElement();
-        System.out.println(root.getTagName());
-        if (root.getTagName().equals("map")) {
-// Отримуємо колекцію країн
-            NodeList listCountries = root.getElementsByTagName("country");
-// Проходимо по країнам
-            for (int i = 0; i < listCountries.getLength(); i++) {
-// Отримуємо поточну країну
-                Element country = (Element) listCountries.item(i);
-                String countryCode = country.getAttribute("id");
-                String countryName = country.getAttribute("name");
-
-                System.out.println(countryCode + "\t" + countryName + ":");
-// Отримуємо колекцію міст для країни
-                NodeList listCities = country.getElementsByTagName("city");
-// Проходимо по містах
-                for (int j = 0; j < listCities.getLength(); j++) {
-// Отримуємо поточне місто
-                    Element city = (Element) listCities.item(j);
-                    String cityName = city.getAttribute("name");
-                    System.out.println("" + cityName);
-                }
+                command = scanner.nextLine();
             }
         }
     }

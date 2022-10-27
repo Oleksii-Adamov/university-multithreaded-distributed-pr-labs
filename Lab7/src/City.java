@@ -1,16 +1,29 @@
-public class City {
+public class City implements Entity {
     public int code;
     public String name;
     public boolean isCapital;
     public int count;
-    public Country country;
+    public int countryCode;
 
     public City(int code, String name, boolean isCapital, int count,
-                Country country) {
+                int countryCode) {
         this.code = code;
         this.name = name;
         this.isCapital = isCapital;
         this.count = count;
-        this.country = country;
+        this.countryCode = countryCode;
+    }
+
+    public City() {
+
+    }
+
+    @Override
+    public void print() {
+        System.out.println("code: " + code);
+        System.out.println("name: " + name);
+        System.out.println("iscap: " + isCapital);
+        System.out.println("count: " + count);
+        System.out.println("country code: " + countryCode);
     }
 }
