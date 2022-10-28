@@ -8,21 +8,15 @@ import org.xml.sax.SAXParseException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.*;
-import javax.xml.transform.dom.DOMSource;
-
-import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
-public class MapXML implements Map {
-    //private List<Country> countries = new ArrayList<>();
+public class MapXML extends MapQueries {
     private HashMap<Integer, Country> countries = new HashMap<>();
 
-    //private List<City> cities = new ArrayList<>();
     private HashMap<Integer, City> cities = new HashMap<>();
 
     public MapXML(String filePath) {
@@ -68,7 +62,7 @@ public class MapXML implements Map {
             for (int j = 0; j < listCities.getLength(); j++) {
                 Element city = (Element) listCities.item(j);
                 City curCity = new City(Integer.parseInt(city.getAttribute("id")), city.getAttribute("name"),
-                        Boolean.parseBoolean(city.getAttribute("iscap")), Integer.parseInt(city.getAttribute("count")),
+                        Integer.parseInt(city.getAttribute("iscap")), Integer.parseInt(city.getAttribute("count")),
                         curCountry.code);
                 cities.put(curCity.code, curCity);
             }
@@ -159,48 +153,4 @@ public class MapXML implements Map {
         return retCities;
     }
 
-    @Override
-    public void toXML(String filePath) {
-        // creating DOM
-        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder = null;
-        try {
-            builder = dbf.newDocumentBuilder();
-        } catch (ParserConfigurationException e) {
-            throw new RuntimeException(e);
-        }
-        Document doc = builder.newDocument();
-        // creating root element
-        Element root = doc.createElement("map");
-        doc.appendChild(root);
-        // adding countries and cities
-        for (Country country : countries.values()) {
-            Element country_elem = doc.createElement("country");
-            country_elem.setAttribute("id", Integer.toString(country.code));
-            country_elem.setAttribute("name", country.name);
-            root.appendChild(country_elem);
-            for (City city : cities.values()) {
-                if (city.countryCode == country.code) {
-                    Element city_elem = doc.createElement("city");
-                    city_elem.setAttribute("id", Integer.toString(city.code));
-                    city_elem.setAttribute("name", city.name);
-                    city_elem.setAttribute("iscap", Boolean.toString(city.isCapital));
-                    city_elem.setAttribute("count", Integer.toString(city.count));
-                    country_elem.appendChild(city_elem);
-                }
-            }
-        }
-        // writing DOM to XML file
-        Source domSource = new DOMSource(doc);
-        Result fileResult = new StreamResult(new File(filePath));
-        TransformerFactory factory = TransformerFactory.newInstance();
-        Transformer transformer = null;
-        try {
-            transformer = factory.newTransformer();
-            transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-16");
-            transformer.transform(domSource, fileResult);
-        } catch (TransformerException e) {
-            throw new RuntimeException(e);
-        }
-    }
 }

@@ -1,6 +1,3 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Collection;
 import java.util.Objects;
 import java.util.Scanner;
@@ -22,7 +19,7 @@ public class Main {
         System.out.print("name: ");
         city.name = scanner.nextLine();
         System.out.print("iscap: ");
-        city.isCapital = Boolean.parseBoolean(scanner.nextLine());
+        city.isCapital = Integer.parseInt(scanner.nextLine());
         System.out.print("count: ");
         city.count = Integer.parseInt(scanner.nextLine());
         System.out.print("country code: ");
@@ -49,13 +46,12 @@ public class Main {
     }
 
     private static <T extends Entity> void printEntityIterable(Collection<T> entities) {
-        System.out.println(entities.size());
         for (T entity : entities) {
             entity.print();
             System.out.println();
         }
     }
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         System.out.println("Commands:");
         System.out.println("DB");
         System.out.println("XML");
@@ -63,6 +59,20 @@ public class Main {
         Scanner scanner = new Scanner( System.in );
         String command = scanner.nextLine();
         while (!Objects.equals(command, "quit")) {
+            MapQueries map;
+            boolean isDB = false;
+            if ("DB".equals(command)) {
+                map = new MapDB();
+                isDB = true;
+            }
+            else if ("XML".equals(command)){
+                map = new MapXML(queryFileNameFromUser(scanner));
+            }
+            else {
+                System.out.println("Wrong command!");
+                command = scanner.nextLine();
+                continue;
+            }
             System.out.println("Commands:");
             System.out.println("addCountry");
             System.out.println("addCity");
@@ -75,10 +85,9 @@ public class Main {
             System.out.println("getCountries");
             System.out.println("getCities");
             System.out.println("toXML");
+            if (isDB) System.out.println("addFromXML");
             System.out.println("quit");
 
-            command = scanner.nextLine();
-            Map map = new MapXML("input.xml");
             while (!Objects.equals(command, "quit")) {
                 switch (command) {
                     case "addCountry" -> printIsSuccess(map.addCountry(queryCountryFromUser(scanner)));
@@ -91,12 +100,26 @@ public class Main {
                     case "getCity" -> map.getCity(queryCodeFromUser(scanner)).print();
                     case "getCountries" -> printEntityIterable(map.getCountries());
                     case "getCities" -> printEntityIterable(map.getCities(queryCodeFromUser(scanner)));
-                    case "toXML" -> map.toXML(queryFileNameFromUser(scanner));
-                    //default -> System.out.println("Wrong command!");
-                    //default -> ;
+                    case "toXML" -> printIsSuccess(map.toXML(queryFileNameFromUser(scanner)));
+                    case "addFromXML" -> {
+                        if (isDB) {
+                            printIsSuccess(((MapDB) map).addFromXML(queryFileNameFromUser(scanner)));
+                        } else {
+                            System.out.println("Wrong command!");
+                        }
+                    }
+                    default -> System.out.println("Wrong command!");
                 }
                 command = scanner.nextLine();
             }
+            if (isDB) {
+                ((MapDB) map).stop();
+            }
+            System.out.println("Commands:");
+            System.out.println("DB");
+            System.out.println("XML");
+            System.out.println("quit");
+            command = scanner.nextLine();
         }
     }
 }
