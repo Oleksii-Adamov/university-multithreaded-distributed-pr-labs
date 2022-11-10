@@ -1,5 +1,6 @@
-package sockets.client;
+package client.socket;
 
+import client.UserInteraction;
 import entities.City;
 import entities.Country;
 import entities.Entity;
@@ -69,19 +70,7 @@ public class Client {
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
             Scanner scanner = new Scanner(System.in);
 
-            System.out.println("Commands:");
-            System.out.println("addCountry");
-            System.out.println("addCity");
-            System.out.println("delCity");
-            System.out.println("delCountry");
-            System.out.println("updCity");
-            System.out.println("updCountry");
-            System.out.println("getCountry");
-            System.out.println("getCity");
-            System.out.println("getCountries");
-            System.out.println("getCities");
-            System.out.println("getCitiesAndCountryNames");
-            System.out.println("numCitiesInCountry");
+            UserInteraction.printCommands();
 
             String command = scanner.nextLine();
             while (!Objects.equals(command, "quit")) {

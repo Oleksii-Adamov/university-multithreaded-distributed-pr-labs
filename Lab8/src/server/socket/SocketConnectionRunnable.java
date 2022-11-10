@@ -1,4 +1,4 @@
-package sockets.server;
+package server.socket;
 
 import java.io.BufferedReader;
 import java.io.IOException;

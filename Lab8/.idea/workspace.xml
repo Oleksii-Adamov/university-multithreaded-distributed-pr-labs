@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4914bb53-83f4-4ee6-b350-f58ca30ef9de" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Lab7/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab7/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lab7/Lab7.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab7/Lab7.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lab7/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab7/src/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sockets/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/socket/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sockets/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sockets/server/SocketConnectionRunnable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/SocketConnectionRunnable.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +43,7 @@
     "RunOnceActivity.go.format.on.save.advertiser.fired": "true",
     "RunOnceActivity.go.formatter.settings.were.checked": "true",
     "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "go.import.settings.migrated": "true",
     "last_opened_file_path": "C:/Program Files (x86)/MySQL/Connector J 8.0/mysql-connector-j-8.0.31.jar",
@@ -69,7 +72,7 @@
       <option name="presentableId" value="Default" />
       <updated>1668093543928</updated>
       <workItem from="1668093545847" duration="52000" />
-      <workItem from="1668093612319" duration="11189000" />
+      <workItem from="1668093612319" duration="11711000" />
     </task>
     <servers />
   </component>
