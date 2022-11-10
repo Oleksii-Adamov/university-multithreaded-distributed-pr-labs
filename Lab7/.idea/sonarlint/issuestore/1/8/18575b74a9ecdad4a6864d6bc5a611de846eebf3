@@ -1,0 +1,12 @@
+
+`	java:S112."FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+`	java:S1124"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+0
+java:S1220""Move this file to a named package.
+N
+java:S2755"3Disable access to external entities in XML parsing.(ƒ”±êùÿÿÿÿ
+I
+java:S6374"3Disable loading of external schemas in XML parsing.(›”Šâ
+N	java:S106("9Replace this use of System.out or System.err by a logger.(ÜÀ†’
+S	java:S106)"9Replace this use of System.out or System.err by a logger.(ğ»˜ƒÿÿÿÿÿ
+S	java:S106*"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ
