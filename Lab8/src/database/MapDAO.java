@@ -241,9 +241,9 @@ public class MapDAO {
         return cities;
     }
 
-    public int numCitiesInCountry(int countryCode) {
+    public Integer numCitiesInCountry(int countryCode) {
         citiesReadLock.lock();
-        int numCities = 0;
+        Integer numCities = null;
         String sql = "SELECT COUNT(ID_CI) as num_cities FROM CITIES WHERE CITIES.ID_CO =" + countryCode;
         try {
             ResultSet rs = stmt.executeQuery(sql);

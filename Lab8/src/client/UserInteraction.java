@@ -4,6 +4,7 @@ import entities.City;
 import entities.Country;
 import entities.Entity;
 
+import java.util.AbstractMap;
 import java.util.Collection;
 import java.util.Scanner;
 
@@ -64,8 +65,28 @@ public class UserInteraction {
     }
 
     public static <T extends Entity> void printEntityIterable(Collection<T> entities) {
+        if (entities == null) {
+            System.out.println("Error");
+        }
         for (T entity : entities) {
             entity.print();
+            System.out.println();
+        }
+    }
+
+    public static void printEintity(Entity entity) {
+        if (entity == null) {
+            System.out.println("Error");
+        }
+        else {
+            entity.print();
+        }
+    }
+
+    public static void printCitiesAndCountryNames(Collection<AbstractMap.SimpleEntry<City, String>> citiesInfo) {
+        for (AbstractMap.SimpleEntry<City, String> cityInfo : citiesInfo) {
+            cityInfo.getKey().print();
+            System.out.println("country name: " + cityInfo.getValue());
             System.out.println();
         }
     }
