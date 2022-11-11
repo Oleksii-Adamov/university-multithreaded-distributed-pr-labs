@@ -1,6 +1,8 @@
 package entities;
 
-public class Country implements Entity {
+import java.io.Serializable;
+
+public class Country implements Entity, Serializable {
     public int code;
     public String name;
 

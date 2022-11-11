@@ -1,6 +1,8 @@
 package entities;
 
-public class City implements Entity {
+import java.io.Serializable;
+
+public class City implements Entity, Serializable {
     public int code;
     public String name;
     public int isCapital;
