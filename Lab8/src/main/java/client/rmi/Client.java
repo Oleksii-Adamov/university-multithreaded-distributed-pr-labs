@@ -1,7 +1,6 @@
 package client.rmi;
 
 import client.UserInteraction;
-import comm.StringComm;
 import server.rmi.RMIServer;
 
 import java.net.MalformedURLException;
