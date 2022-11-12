@@ -5,37 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4914bb53-83f4-4ee6-b350-f58ca30ef9de" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_rabbitmq_amqp_client_5_16_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_2_0_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/e/3e0383dda99ec87476f251a56e66524f5263142d" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/7/677d341df07b3c6d92bd454d1150b677648f5b9b" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/2/924f089edb4af5ee45c8a9d1129cd28e2b368138" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/2/a2be1f876fc4970069fb84a297f05be85c6c0b65" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/9/d917bc71acb4a52a77c2e5e34b52293702f14b30" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Lab8Maven/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/e/3e0383dda99ec87476f251a56e66524f5263142d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/7/677d341df07b3c6d92bd454d1150b677648f5b9b" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/2/924f089edb4af5ee45c8a9d1129cd28e2b368138" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/2/a2be1f876fc4970069fb84a297f05be85c6c0b65" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/9/d917bc71acb4a52a77c2e5e34b52293702f14b30" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lab8.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Lab8.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MapQueries.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/UserInteraction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/UserInteraction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/rmi/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/rmi/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/socket/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/socket/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/comm/StringComm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/comm/StringComm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/MapDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/MapDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/City.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/City.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/Country.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Country.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/rmi/RMIServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/rmi/RMIServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/rmi/RMIServerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/rmi/RMIServerImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/rmi/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/rmi/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/socket/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/socket/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/socket/SocketConnectionRunnable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/socket/SocketConnectionRunnable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/client/jms/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/jms/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/client/socket/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/socket/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/comm/StringComm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/comm/StringComm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/jms/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/jms/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/rmi/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/rmi/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/socket/SocketConnectionRunnable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/socket/SocketConnectionRunnable.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,11 +54,12 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "go.import.settings.migrated": "true",
-    "last_opened_file_path": "D:/University/5-sem/libraries/amqp-client-5.7.1.jar",
+    "last_opened_file_path": "D:/University/5-sem/university-multithreaded-distributed-pr-labs/Lab8",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs.jest.jest_package": "",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
@@ -90,6 +73,94 @@
     ]
   }
 }]]></component>
+  <component name="RunManager" selected="Application.client.rmi.Client">
+    <configuration name="Client" type="Application" factoryName="Application" singleton="false" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="client.jms.Client" />
+      <module name="Lab8" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="client.jms.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="server.jms.Server" />
+      <module name="Lab8" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="server.jms.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="client.rmi.Client" type="Application" factoryName="Application" singleton="false" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="client.rmi.Client" />
+      <module name="Lab8" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="client.rmi.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="client.socket.Client" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="client.socket.Client" />
+      <module name="Lab8" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="client.socket.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="server.rmi.Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="server.rmi.Server" />
+      <module name="Lab8" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="server.rmi.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="server.socket.Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="server.socket.Server" />
+      <module name="Lab8" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="server.socket.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.server.rmi.Server" />
+        <item itemvalue="Application.client.socket.Client" />
+        <item itemvalue="Application.server.socket.Server" />
+        <item itemvalue="Application.Server" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -101,7 +172,8 @@
       <workItem from="1668093545847" duration="52000" />
       <workItem from="1668093612319" duration="12346000" />
       <workItem from="1668156931472" duration="23140000" />
-      <workItem from="1668247796934" duration="4325000" />
+      <workItem from="1668247796934" duration="5076000" />
+      <workItem from="1668258291217" duration="8057000" />
     </task>
     <servers />
   </component>
@@ -126,24 +198,14 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/server/socket/SocketConnectionRunnable.java</url>
-          <line>96</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/comm/StringComm.java</url>
-          <line>118</line>
+          <line>121</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/client/socket/Client.java</url>
           <line>50</line>
           <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/server/socket/SocketConnectionRunnable.java</url>
-          <line>66</line>
-          <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

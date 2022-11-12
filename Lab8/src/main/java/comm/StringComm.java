@@ -51,18 +51,21 @@ public class StringComm {
         return msg.toString();
     }
 
-    public static boolean isSuccess(String msg) {
-        String[] fields = msg.split("#");
-        return Objects.equals(fields[0], "toClient") && Objects.equals(fields[1], "1");
+    public static boolean isSuccess(String[] fields) {
+        return isValidMsg(fields) && Objects.equals(fields[1], "1");
     }
 
-    public static boolean isValidMsgToServer(String[] fields) {
-        return fields.length > 1 && Objects.equals(fields[0], "toServer");
+    public static boolean isValidMsg(String[] fields) {
+        return fields.length > 1;
     }
 
     public static boolean isValidAndSucceful(String[] fields) {
-        return (Objects.equals(fields[0], "toClient") && Objects.equals(fields[1], "1")) ||
-                Objects.equals(fields[0], "toServer");
+        if (Objects.equals(fields[0], "toClient")) {
+            return Objects.equals(fields[1], "1");
+        }
+        else {
+            return true;
+        }
     }
 
     public static Country countryFromFieldsPos(String[] fields, int pos) {

@@ -36,15 +36,15 @@ public class Client {
                 switch (command) {
                     case "addCountry", "updCountry" -> {
                         toServer.println(baseMsgToServer + "#" + StringComm.countryToMsg(UserInteraction.queryCountryFromUser(scanner)));
-                        UserInteraction.printIsSuccess(StringComm.isSuccess(fromServerReader.readLine()));
+                        UserInteraction.printIsSuccess(StringComm.isSuccess(StringComm.msgFields(fromServerReader.readLine())));
                     }
                     case "addCity", "updCity" -> {
                         toServer.println(baseMsgToServer + "#" + StringComm.cityToMsg(UserInteraction.queryCityFromUser(scanner)));
-                        UserInteraction.printIsSuccess(StringComm.isSuccess(fromServerReader.readLine()));
+                        UserInteraction.printIsSuccess(StringComm.isSuccess(StringComm.msgFields(fromServerReader.readLine())));
                     }
                     case "delCity", "delCountry" -> {
                         toServer.println(baseMsgToServer + "#" + UserInteraction.queryCodeFromUser(scanner));
-                        UserInteraction.printIsSuccess(StringComm.isSuccess(fromServerReader.readLine()));
+                        UserInteraction.printIsSuccess(StringComm.isSuccess(StringComm.msgFields(fromServerReader.readLine())));
                     }
                     case "getCountry" -> {
                         toServer.println(baseMsgToServer + "#" + UserInteraction.queryCodeFromUser(scanner));

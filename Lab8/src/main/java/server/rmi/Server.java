@@ -11,6 +11,7 @@ public class Server {
             Registry r = LocateRegistry.createRegistry(1099);
             RMIServerImpl server = new RMIServerImpl();
             r.rebind("Map", server);
+            System.out.println("Server started");
         } catch (RemoteException e) {
             e.printStackTrace();
         }

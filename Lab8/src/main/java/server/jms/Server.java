@@ -4,6 +4,7 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.DeliverCallback;
+import database.MapDAO;
 
 import java.nio.charset.StandardCharsets;
 
@@ -18,11 +19,14 @@ public class Server {
         Channel channel = connection.createChannel();
 
         channel.queueDeclare(TO_SERVER_QUEUE_NAME, false, false, false, null);
-        System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
+        System.out.println("Server started");
+
+        MapDAO map = new MapDAO();
 
         DeliverCallback deliverCallback = (consumerTag, delivery) -> {
-            String message = new String(delivery.getBody(), StandardCharsets.UTF_8);
-            System.out.println(" [x] Received '" + message + "'");
+            String msgFromClient = new String(delivery.getBody(), StandardCharsets.UTF_8);
+            Thread thread = new Thread(new ResponseToClientRunnable(channel, map, msgFromClient));
+            thread.start();
         };
         channel.basicConsume(TO_SERVER_QUEUE_NAME, true, deliverCallback, consumerTag -> { });
     }
