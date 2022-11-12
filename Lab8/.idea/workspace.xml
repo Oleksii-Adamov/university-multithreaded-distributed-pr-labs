@@ -5,19 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4914bb53-83f4-4ee6-b350-f58ca30ef9de" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/e/3e0383dda99ec87476f251a56e66524f5263142d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/7/677d341df07b3c6d92bd454d1150b677648f5b9b" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/2/924f089edb4af5ee45c8a9d1129cd28e2b368138" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/2/a2be1f876fc4970069fb84a297f05be85c6c0b65" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/9/d917bc71acb4a52a77c2e5e34b52293702f14b30" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/client/jms/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/jms/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/client/socket/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/socket/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/comm/StringComm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/comm/StringComm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/jms/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/jms/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/rmi/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/rmi/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/socket/SocketConnectionRunnable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/socket/SocketConnectionRunnable.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +61,7 @@
     ]
   }
 }]]></component>
-  <component name="RunManager" selected="Application.client.rmi.Client">
+  <component name="RunManager" selected="Application.Client">
     <configuration name="Client" type="Application" factoryName="Application" singleton="false" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="client.jms.Client" />
       <module name="Lab8" />
@@ -154,10 +142,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Server" />
         <item itemvalue="Application.server.rmi.Server" />
         <item itemvalue="Application.client.socket.Client" />
         <item itemvalue="Application.server.socket.Server" />
-        <item itemvalue="Application.Server" />
       </list>
     </recent_temporary>
   </component>
@@ -173,7 +161,7 @@
       <workItem from="1668093612319" duration="12346000" />
       <workItem from="1668156931472" duration="23140000" />
       <workItem from="1668247796934" duration="5076000" />
-      <workItem from="1668258291217" duration="8057000" />
+      <workItem from="1668258291217" duration="9847000" />
     </task>
     <servers />
   </component>
