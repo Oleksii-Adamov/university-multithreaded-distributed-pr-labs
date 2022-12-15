@@ -49,7 +49,7 @@
                                 <td><c:out default="None" escapeXml="true" value="${city.isCapital == 1 ? 'Yes' : 'No'}" /></td>
                                 <td>${city.count}</td>
                                 <td><a href="#" id="show"
-                                       onclick="document.getElementById('action').value = 'editCity';document.getElementById('cityCode').value = '${city.code}';
+                                       onclick="document.getElementById('action').value = 'redirectToEditCity';document.getElementById('cityCode').value = '${city.code}';
                                                document.getElementById('citiesForm').submit();">
                                     Edit
                                 </a>
