@@ -28,8 +28,8 @@ public class CountriesServlet extends HttpServlet {
             case "add":
                 addCountryAction(req, resp);
                 break;
-            case "edit":
-                editCountryAction(req, resp);
+            case "show":
+                redirectToCountryServlet(req, resp);
                 break;
             case "delete":
                 deleteCountryAction(req, resp);
@@ -43,6 +43,11 @@ public class CountriesServlet extends HttpServlet {
         List<Country> countries = MapDAO.getCountries();
         req.setAttribute("countries", countries);
         dispatcher.forward(req, resp);
+    }
+
+    private void redirectToCountryServlet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        int code = Integer.parseInt(req.getParameter("countryCode"));
+        resp.sendRedirect("Lab9_war/country?countryCode="+code);
     }
 
     private void addCountryAction(HttpServletRequest req, HttpServletResponse resp)
@@ -63,20 +68,6 @@ public class CountriesServlet extends HttpServlet {
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
             dispatcher.forward(req, resp);
         }
-    }
-
-    private void editCountryAction(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
-        String name = req.getParameter("name");
-        int code = Integer.parseInt(req.getParameter("countryCode"));
-        boolean success = MapDAO.updCountry(new Country(code, name));
-        String message = null;
-        if (success) {
-            message = "The country has been successfully updated.";
-        }
-        req.setAttribute("countryCode", code);
-        req.setAttribute("message", message);
-        forwardCountries(req, resp);
     }
 
     private void deleteCountryAction(HttpServletRequest req, HttpServletResponse resp)

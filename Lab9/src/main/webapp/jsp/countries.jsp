@@ -1,10 +1,5 @@
-<%@ page import="ua.lab9.web.entities.Country" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--<%@ page language="java" contentType="text/html; charset=ISO-8859-1"--%>
-<%--         pageEncoding="ISO-8859-1"%>--%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@page import="java.util.List"%>
-<%@page import="ua.lab9.web.entities.Country"%>
 <html>
 <head>
     <title>Countries</title>
@@ -33,6 +28,7 @@
               <td>Code</td>
               <td>Name</td>
               <td></td>
+              <td></td>
             </tr>
           </thead>
           <c:forEach var="country" items="${countries}">
@@ -43,6 +39,16 @@
             <tr class="${classSucess}">
               <td>${country.code}</td>
               <td>${country.name}</td>
+<%--              <td><a href="#" id="show"--%>
+<%--                     onclick="document.getElementById('action').value = 'show';document.getElementById('countryCode').value = '${country.code}';--%>
+<%--                             document.getElementById('countriesForm').submit();">--%>
+<%--                Cities--%>
+<%--              </a>--%>
+<%--              </td>--%>
+              <td>
+                  <a href="#" id="show" onclick="document.getElementById('countryCodeForShow').value = '${country.code}';
+                          document.getElementById('showCountryForm').submit();">Cities</a>
+              </td>
               <td><a href="#" id="delete"
                      onclick="document.getElementById('action').value = 'delete';document.getElementById('countryCode').value = '${country.code}';
                              document.getElementById('countriesForm').submit();">
@@ -64,6 +70,9 @@
   <form action ="jsp/new-country.jsp">
     <br>
     <button type="submit" class="btn btn-primary  btn-md">New country</button>
+  </form>
+  <form action="<c:url value='/country'/>" method="get" id = "showCountryForm">
+    <input type="hidden" id="countryCodeForShow" name="countryCode">
   </form>
 </div>
 </body>

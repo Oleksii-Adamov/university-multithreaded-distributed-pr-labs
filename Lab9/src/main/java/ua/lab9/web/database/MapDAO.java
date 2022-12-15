@@ -79,8 +79,8 @@ public class MapDAO {
         citiesWriteLock.lock();
         boolean success = true;
         String sql = "INSERT INTO CITIES (ID_CI, NAME, ISCAPITAL, COUNT, ID_CO) " +
-                "VALUES (" + city.code + ", '" + city.name + "', " + city.isCapital + ", " + city.count + ", " +
-                city.countryCode + ")";
+                "VALUES (" + city.getCode() + ", '" + city.getName() + "', " + city.getIsCapital() + ", " + city.getCount() + ", " +
+                city.getCountryCode() + ")";
         try {
             stmt.executeUpdate(sql);
         } catch (SQLException e) {
@@ -124,13 +124,13 @@ public class MapDAO {
     public static boolean updCity(City newCityData) {
         citiesWriteLock.lock();
         boolean success = true;
-        String sql = "UPDATE CITIES SET NAME ='" + newCityData.name + "', ISCAPITAL =" + newCityData.isCapital +
-                ", COUNT =" + newCityData.count + ", ID_CO =" + newCityData.countryCode +
-                " WHERE ID_CI =" + newCityData.code;
+        String sql = "UPDATE CITIES SET NAME ='" + newCityData.getName() + "', ISCAPITAL =" + newCityData.getIsCapital() +
+                ", COUNT =" + newCityData.getCount() + ", ID_CO =" + newCityData.getCountryCode() +
+                " WHERE ID_CI =" + newCityData.getCode();
         try {
             stmt.executeUpdate(sql);
         } catch (SQLException e) {
-            System.out.println("Error: updCity " + newCityData.code + " " + e.getMessage());
+            System.out.println("Error: updCity " + newCityData.getCode() + " " + e.getMessage());
             success = false;
         }
         citiesWriteLock.unlock();
@@ -205,9 +205,9 @@ public class MapDAO {
         return countries;
     }
 
-    public static Collection<City> getCities(int countryCode) {
+    public static List<City> getCities(int countryCode) {
         citiesReadLock.lock();
-        ArrayList<City> cities = new ArrayList<>();
+        List<City> cities = new ArrayList<>();
         String sql = "SELECT ID_CI, NAME, ISCAPITAL, COUNT, ID_CO " +
                 "FROM CITIES WHERE CITIES.ID_CO =" + countryCode;
         try {
