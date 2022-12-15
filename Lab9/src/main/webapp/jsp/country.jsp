@@ -24,6 +24,7 @@
         <form action="<c:url value='/country'/>" method="post" id="citiesForm" role="form">
             <input type="hidden" id="cityCode" name="cityCode">
             <input type="hidden" id="action" name="action">
+            <input type="hidden" id="countryCode" name="countryCode" value="${countryCode}">
             <c:choose>
                 <c:when test="${not empty cities}">
                     <table  class="table table-striped">

@@ -67,7 +67,7 @@ public class CountriesServlet extends HttpServlet {
         int code = Integer.parseInt(req.getParameter("countryCode"));
         boolean success = MapDAO.delCountry(code);
         if (success){
-            String message = "The employee has been successfully removed.";
+            String message = "The country has been successfully deleted.";
             req.setAttribute("message", message);
         }
         forwardCountries(req, resp);

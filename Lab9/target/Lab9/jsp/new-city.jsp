@@ -17,7 +17,7 @@
   <div class="container">
     <form action="<c:url value='/country'/>" method="post" role="form" data-toggle="validator" >
       <input type="hidden" id="action" name="action" value="add">
-      <h2>Country</h2>
+      <h2>City</h2>
       <c:if test="${not empty message}">
         <div class="alert alert-danger">
             ${message}

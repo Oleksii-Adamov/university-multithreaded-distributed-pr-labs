@@ -78,7 +78,7 @@ public class CountryServlet extends HttpServlet {
             forwardCountryInfo(req, resp);
         }
         else {
-            String message = "City with this code already exists or Country with this code doesn't exist";
+            String message = "City with this code already exists or country with this code doesn't exist";
             req.setAttribute("message", message);
             String nextJSP = "/jsp/new-city.jsp";
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
@@ -91,6 +91,14 @@ public class CountryServlet extends HttpServlet {
     }
 
     private void deleteCityAction(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        int code = Integer.parseInt(req.getParameter("cityCode"));
+        int countryCode = Integer.parseInt(req.getParameter("countryCode"));
+        boolean success = MapDAO.delCity(code);
+        if (success){
+            String message = "The city has been successfully deleted.";
+            req.setAttribute("message", message);
+            req.setAttribute("countryCode", countryCode);
+        }
+        forwardCountryInfo(req, resp);
     }
 }
