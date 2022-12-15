@@ -16,15 +16,16 @@
                     ${message}
             </div>
         </c:if>
-        <form action ="jsp/edit-country.jsp">
-            <br>
-            <button type="submit" class="btn btn-primary  btn-md">Edit</button>
-        </form>
-        <h3>Cities</h3>
         <form action="<c:url value='/country'/>" method="post" id="citiesForm" role="form">
             <input type="hidden" id="cityCode" name="cityCode">
             <input type="hidden" id="action" name="action">
             <input type="hidden" id="countryCode" name="countryCode" value="${countryCode}">
+            <a href="#" id="edit"
+               onclick="document.getElementById('action').value = 'redirectToEditCountry';
+                       document.getElementById('citiesForm').submit();">
+                Edit Country
+            </a>
+            <h3>Cities</h3>
             <c:choose>
                 <c:when test="${not empty cities}">
                     <table  class="table table-striped">
@@ -48,7 +49,7 @@
                                 <td>${city.name}</td>
                                 <td><c:out default="None" escapeXml="true" value="${city.isCapital == 1 ? 'Yes' : 'No'}" /></td>
                                 <td>${city.count}</td>
-                                <td><a href="#" id="show"
+                                <td><a href="#" id="edit"
                                        onclick="document.getElementById('action').value = 'redirectToEditCity';document.getElementById('cityCode').value = '${city.code}';
                                                document.getElementById('citiesForm').submit();">
                                     Edit

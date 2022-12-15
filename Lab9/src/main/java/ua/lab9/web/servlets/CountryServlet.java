@@ -27,11 +27,15 @@ public class CountryServlet extends HttpServlet {
             case "add":
                 addCityAction(req, resp);
                 break;
+            case "redirectToEditCountry":
+                redirectToEditCountry(req, resp);
+                break;
             case "editCountry":
                 editCountryAction(req, resp);
                 break;
             case "redirectToEditCity":
                 redirectToEditCity(req, resp);
+                break;
             case "editCity":
                 editCityAction(req, resp);
                 break;
@@ -50,20 +54,6 @@ public class CountryServlet extends HttpServlet {
         req.setAttribute("cities", cities);
         req.setAttribute("countryCode", code);
         dispatcher.forward(req, resp);
-    }
-
-    private void editCountryAction(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
-        String name = req.getParameter("name");
-        int code = Integer.parseInt(req.getParameter("countryCode"));
-        boolean success = MapDAO.updCountry(new Country(code, name));
-        String message = null;
-        if (success) {
-            message = "The country has been successfully updated.";
-            req.setAttribute("countryCode", code);
-            req.setAttribute("message", message);
-            forwardCountryInfo(req, resp);
-        }
     }
 
     private void addCityAction(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -96,6 +86,34 @@ public class CountryServlet extends HttpServlet {
         dispatcher.forward(req, resp);
     }
 
+    private void redirectToEditCountry(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String nextJSP = "/jsp/edit-country.jsp";
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
+        int code = Integer.parseInt(req.getParameter("countryCode"));
+        req.setAttribute("country", MapDAO.getCountry(code));
+        dispatcher.forward(req, resp);
+    }
+
+    private void editCountryAction(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        int code = Integer.parseInt(req.getParameter("countryCode"));
+        String name = req.getParameter("name");
+        boolean success = MapDAO.updCountry(new Country(code, name));
+        if (success) {
+            String message = "The country has been successfully updated.";
+            req.setAttribute("message", message);
+            forwardCountryInfo(req, resp);
+        }
+        else {
+            String message = "Error";
+            req.setAttribute("message", message);
+            req.setAttribute("country", MapDAO.getCountry(code));
+            String nextJSP = "/jsp/edit-country.jsp";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
+            dispatcher.forward(req, resp);
+        }
+    }
+
     private void editCityAction(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int code = Integer.parseInt(req.getParameter("code"));
         String name = req.getParameter("name");
@@ -104,7 +122,6 @@ public class CountryServlet extends HttpServlet {
         int countryCode = Integer.parseInt(req.getParameter("countryCode"));
         boolean success = MapDAO.updCity(new City(code, name, isCapital, count, countryCode));
         if (success) {
-//            req.setAttribute("countryCode", countryCode);
             req.setAttribute("cityCode", code);
             String message = "The city has been successfully updated.";
             req.setAttribute("message", message);
