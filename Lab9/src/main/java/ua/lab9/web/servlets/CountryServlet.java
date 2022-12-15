@@ -65,7 +65,25 @@ public class CountryServlet extends HttpServlet {
     }
 
     private void addCityAction(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        int code = Integer.parseInt(req.getParameter("code"));
+        String name = req.getParameter("name");
+        int isCapital = Integer.parseInt(req.getParameter("isCapital"));
+        int count = Integer.parseInt(req.getParameter("count"));
+        int countryCode = Integer.parseInt(req.getParameter("countryCode"));
+        boolean success = MapDAO.addCity(new City(code, name, isCapital, count, countryCode));
+        if (success) {
+            req.setAttribute("cityCode", code);
+            String message = "The new city has been successfully created.";
+            req.setAttribute("message", message);
+            forwardCountryInfo(req, resp);
+        }
+        else {
+            String message = "City with this code already exists or Country with this code doesn't exist";
+            req.setAttribute("message", message);
+            String nextJSP = "/jsp/new-city.jsp";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
+            dispatcher.forward(req, resp);
+        }
     }
 
     private void editCityAction(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

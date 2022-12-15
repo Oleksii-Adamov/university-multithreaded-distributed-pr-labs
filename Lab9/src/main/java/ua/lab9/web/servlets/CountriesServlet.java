@@ -28,9 +28,6 @@ public class CountriesServlet extends HttpServlet {
             case "add":
                 addCountryAction(req, resp);
                 break;
-            case "show":
-                redirectToCountryServlet(req, resp);
-                break;
             case "delete":
                 deleteCountryAction(req, resp);
                 break;
@@ -45,11 +42,6 @@ public class CountriesServlet extends HttpServlet {
         dispatcher.forward(req, resp);
     }
 
-    private void redirectToCountryServlet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        int code = Integer.parseInt(req.getParameter("countryCode"));
-        resp.sendRedirect("Lab9_war/country?countryCode="+code);
-    }
-
     private void addCountryAction(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         int code = Integer.parseInt(req.getParameter("code"));
@@ -62,7 +54,7 @@ public class CountriesServlet extends HttpServlet {
             forwardCountries(req, resp);
         }
         else {
-            String message = "Country with this id already exists!";
+            String message = "Country with this code already exists!";
             req.setAttribute("message", message);
             String nextJSP = "/jsp/new-country.jsp";
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);

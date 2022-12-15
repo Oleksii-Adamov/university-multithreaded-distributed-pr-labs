@@ -54,7 +54,7 @@
                                 </a>
                                 </td>
                                 <td><a href="#" id="delete"
-                                       onclick="document.getElementById('action').value = 'delete';document.getElementById('cityCode').value = '${city.code}';
+                                       onclick="document.getElementById('action').value = 'deleteCity';document.getElementById('cityCode').value = '${city.code}';
                                                document.getElementById('citiesForm').submit();">
                                     <span class="glyphicon glyphicon-trash"></span>
                                 </a>

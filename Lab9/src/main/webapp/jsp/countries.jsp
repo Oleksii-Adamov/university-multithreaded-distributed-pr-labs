@@ -39,12 +39,6 @@
             <tr class="${classSucess}">
               <td>${country.code}</td>
               <td>${country.name}</td>
-<%--              <td><a href="#" id="show"--%>
-<%--                     onclick="document.getElementById('action').value = 'show';document.getElementById('countryCode').value = '${country.code}';--%>
-<%--                             document.getElementById('countriesForm').submit();">--%>
-<%--                Cities--%>
-<%--              </a>--%>
-<%--              </td>--%>
               <td>
                   <a href="#" id="show" onclick="document.getElementById('countryCodeForShow').value = '${country.code}';
                           document.getElementById('showCountryForm').submit();">Cities</a>
