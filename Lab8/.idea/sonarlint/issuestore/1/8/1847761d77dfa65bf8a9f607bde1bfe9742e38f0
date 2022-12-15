@@ -1,0 +1,20 @@
+
+`	java:S112 "FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+`	java:S112'"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+`	java:S1125"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+]
+java:S1192›"FDefine a constant instead of duplicating this literal "ID_CO" 4 times.(ìöÏì
+S	java:S106A"9Replace this use of System.out or System.err by a logger.(Üï½Ûÿÿÿÿÿ
+N	java:S106Q"9Replace this use of System.out or System.err by a logger.(ô²Ôì
+N	java:S106`"9Replace this use of System.out or System.err by a logger.(„”Çø
+S	java:S106o"9Replace this use of System.out or System.err by a logger.(¥„ÁÆıÿÿÿÿ
+N	java:S106"9Replace this use of System.out or System.err by a logger.(İåİä
+T	java:S106"9Replace this use of System.out or System.err by a logger.(°Ë´íøÿÿÿÿ
+T	java:S106"9Replace this use of System.out or System.err by a logger.(‰¾İÌıÿÿÿÿ
+T	java:S106±"9Replace this use of System.out or System.err by a logger.(Âı³“ÿÿÿÿÿ
+T	java:S106Ã"9Replace this use of System.out or System.err by a logger.(ü¿·µıÿÿÿÿ
+I
+java:S1168Ä"+Return an empty collection instead of null.(¥¹ï8’§ÇßÆ0
+N	java:S106×"9Replace this use of System.out or System.err by a logger.(›”¤0
+N	java:S106í"9Replace this use of System.out or System.err by a logger.(ÆşÈ
+T	java:S106ÿ"9Replace this use of System.out or System.err by a logger.(ö½Ü˜ıÿÿÿÿ

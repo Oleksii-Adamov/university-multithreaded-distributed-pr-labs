@@ -1,0 +1,8 @@
+
+_
+java:S2259"DA "NullPointerException" could be thrown; "server" is nullable here.(êíšÇÿÿÿÿÿ
+e
+java:S2095"JUse try-with-resources or close this "ServerSocket" in a "finally" clause.(Û…“÷þÿÿÿÿ
+=
+java:S2189""Add an end condition to this loop.(˜ïˆžÿÿÿÿÿ
+S	java:S106"9Replace this use of System.out or System.err by a logger.(ØÐÓµúÿÿÿÿ

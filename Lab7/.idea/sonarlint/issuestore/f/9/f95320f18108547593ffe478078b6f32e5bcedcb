@@ -1,0 +1,23 @@
+
+`	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+`	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+`	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+\
+java:S1192w"FDefine a constant instead of duplicating this literal "ID_CO" 4 times.(ìöÏì
+v	java:S135¹"YReduce the total number of break and continue statements in this loop to use at most one.(¿œì8ÿ¹®€Â0
+0
+java:S1220""Move this file to a named package.
+S	java:S106+"9Replace this use of System.out or System.err by a logger.(Üï½Ûÿÿÿÿÿ
+N	java:S1069"9Replace this use of System.out or System.err by a logger.(ô²Ôì
+N	java:S106E"9Replace this use of System.out or System.err by a logger.(„”Çø
+S	java:S106Q"9Replace this use of System.out or System.err by a logger.(¥„ÁÆıÿÿÿÿ
+N	java:S106_"9Replace this use of System.out or System.err by a logger.(İåİä
+S	java:S106k"9Replace this use of System.out or System.err by a logger.(°Ë´íøÿÿÿÿ
+S	java:S106{"9Replace this use of System.out or System.err by a logger.(‰¾İÌıÿÿÿÿ
+T	java:S106"9Replace this use of System.out or System.err by a logger.(Âı³“ÿÿÿÿÿ
+T	java:S106"9Replace this use of System.out or System.err by a logger.(ü¿·µıÿÿÿÿ
+B
+java:S1168"+Return an empty collection instead of null.(¥¹ï
+N	java:S106°"9Replace this use of System.out or System.err by a logger.(›”¤0
+B
+java:S1168±"+Return an empty collection instead of null.(¥¹ï

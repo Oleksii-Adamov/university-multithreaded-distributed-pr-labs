@@ -1,8 +1,10 @@
 package ua.lab9.web.entities;
 
-public class Country implements Entity {
-    public int code;
-    public String name;
+import java.io.Serializable;
+
+public class Country implements Entity, Serializable {
+    private int code;
+    private String name;
 
     public Country(int code, String name) {
         this.code = code;
@@ -11,5 +13,21 @@ public class Country implements Entity {
 
     public Country() {
 
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

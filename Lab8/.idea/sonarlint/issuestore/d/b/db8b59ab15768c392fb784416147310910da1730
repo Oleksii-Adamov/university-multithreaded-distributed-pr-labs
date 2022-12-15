@@ -1,0 +1,17 @@
+
+_
+java:S2095"DUse try-with-resources or close this "Socket" in a "finally" clause.(ïî»»øÿÿÿÿ
+N	java:S106"9Replace this use of System.out or System.err by a logger.(Ú¶îÇ
+S	java:S106"9Replace this use of System.out or System.err by a logger.(´áÀŠÿÿÿÿÿ
+S	java:S106K"9Replace this use of System.out or System.err by a logger.(êÓæøùÿÿÿÿ
+S	java:S106N"9Replace this use of System.out or System.err by a logger.(³ğ¸ûÿÿÿÿ
+N	java:S106Q"9Replace this use of System.out or System.err by a logger.(‘ò¼Ò
+Z	java:S106W"9Replace this use of System.out or System.err by a logger.(ğúºşÿÿÿÿ8Ú¯í»Æ0
+L
+java:S1128"*Remove this unused import 'entities.City'.(ºëã™øÿÿÿÿ8× ŠÇ0
+J
+java:S1128"-Remove this unused import 'entities.Country'.(Üñ½ï8Ø ŠÇ0
+N
+java:S1128",Remove this unused import 'entities.Entity'.(ÓÃ©ôúÿÿÿÿ8Ù ŠÇ0
+S
+java:S1128"1Remove this unused import 'java.util.Collection'.(¹ÉĞšùÿÿÿÿ8Ú ŠÇ0
