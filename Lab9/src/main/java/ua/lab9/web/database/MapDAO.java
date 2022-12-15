@@ -52,14 +52,6 @@ public class MapDAO {
         citiesWriteLock = citiesReadWriteLock.writeLock();
     }
 
-    public static void stop() {
-        try {
-            con.close();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     public static boolean addCountry(Country country) {
         countriesWriteLock.lock();
         boolean success = true;
@@ -222,45 +214,5 @@ public class MapDAO {
         }
         citiesReadLock.unlock();
         return cities;
-    }
-
-    public static Collection<AbstractMap.SimpleEntry<City, String>> getCitiesAndCountryNames() {
-        countriesReadLock.lock();
-        citiesReadLock.lock();
-        ArrayList<AbstractMap.SimpleEntry<City, String>> cities = new ArrayList<>();
-        String sql = "SELECT CITIES.ID_CI, CITIES.NAME, CITIES.ISCAPITAL, CITIES.COUNT, CITIES.ID_CO, COUNTRIES.NAME FROM CITIES INNER JOIN COUNTRIES ON CITIES.ID_CO = COUNTRIES.ID_CO";
-        try {
-            ResultSet rs = stmt.executeQuery(sql);
-            while (rs.next()) {
-                cities.add(new AbstractMap.SimpleEntry<>(
-                        new City(rs.getInt("CITIES.ID_CI"), rs.getString("CITIES.NAME"),
-                                rs.getInt("CITIES.ISCAPITAL"), rs.getInt("CITIES.COUNT"),
-                                rs.getInt("CITIES.ID_CO")),
-                        rs.getString("COUNTRIES.NAME")));
-            }
-            rs.close();
-        } catch (SQLException e) {
-            System.out.println("Error: getCitiesAndCountryNames " + e.getMessage());
-        }
-        countriesReadLock.unlock();
-        citiesReadLock.unlock();
-        return cities;
-    }
-
-    public static Integer numCitiesInCountry(int countryCode) {
-        citiesReadLock.lock();
-        Integer numCities = null;
-        String sql = "SELECT COUNT(ID_CI) as num_cities FROM CITIES WHERE CITIES.ID_CO =" + countryCode;
-        try {
-            ResultSet rs = stmt.executeQuery(sql);
-            while (rs.next()) {
-                numCities = rs.getInt("num_cities");
-            }
-            rs.close();
-        } catch (SQLException e) {
-            System.out.println("Error: numCitiesInCountry " + countryCode + " " + e.getMessage());
-        }
-        citiesReadLock.unlock();
-        return numCities;
     }
 }
