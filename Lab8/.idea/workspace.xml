@@ -5,13 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4914bb53-83f4-4ee6-b350-f58ca30ef9de" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Lab7/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab7/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Exam/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/b/0b4b9048c0a07b952ea27cab90079106c102c669" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/3/13ae85944ada559b3f6c05da1f60d738be7c1ae0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/8/1847761d77dfa65bf8a9f607bde1bfe9742e38f0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/4/44f0aaf89d8940c1e979e731e53517c2d18c0e98" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/2/52ee77ed0c6623b364df211c4ec36e2bdc9f709c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/d/5dae2b08306cb7f6bf72d76192e2295a265a429c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/b/7b3e7ff81c77a4fa4497b18db6833156388f1902" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/f/afeb8437065db3dee82ca2e13d7f3c2dff5092b2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/6/b6f427abb2410e1765841daf3c215c6efb3baf0e" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/b/bb1dab9ed18c87c5b27425d4d3704b18a4ef0217" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/1/c1e280426599aa819bd11f5bede8fe4b6d2f55c3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/b/cbf597a9cb468907bc5667cb34564c4920947352" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/9/e9e4856107e120410b27e29d9867dd13de4d2c29" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lab9/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab9/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lab9/src/main/java/ua/lab9/web/database/MapDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab9/src/main/java/ua/lab9/web/database/MapDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lab9/src/main/webapp/WEB-INF/web.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lab9/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab9/src/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lab9/target/Lab9/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab9/target/Lab9/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab9/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab9/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab9/target/Lab9/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab9/target/Lab9/WEB-INF/web.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +79,7 @@
     ]
   }
 }</component>
-  <component name="RunManager" selected="Application.Client">
+  <component name="RunManager" selected="Application.server.rmi.Server">
     <configuration name="Client" type="Application" factoryName="Application" singleton="false" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="client.jms.Client" />
       <module name="Lab8" />
@@ -148,8 +160,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Server" />
         <item itemvalue="Application.server.rmi.Server" />
+        <item itemvalue="Application.Server" />
         <item itemvalue="Application.client.socket.Client" />
         <item itemvalue="Application.server.socket.Server" />
       </list>
@@ -171,6 +183,7 @@
       <workItem from="1668347824977" duration="84000" />
       <workItem from="1669894140731" duration="1485000" />
       <workItem from="1671038906246" duration="3201000" />
+      <workItem from="1671119452629" duration="5606000" />
     </task>
     <servers />
   </component>

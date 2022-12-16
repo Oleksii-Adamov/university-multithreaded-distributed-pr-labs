@@ -1,0 +1,22 @@
+
+_
+java:S1192C"IDefine a constant instead of duplicating this literal "cityCode" 4 times.(‡›—‘
+b
+java:S11922"LDefine a constant instead of duplicating this literal "countryCode" 8 times.(¹Æ¨
+j
+java:S1192E"HDefine a constant instead of duplicating this literal "message" 7 times.(±îƒÇùÿÿÿÿ8‘“°Ñ0
+
+java:S1989"lHandle the following exceptions that could be thrown by "forwardCountryInfo": ServletException, IOException.( â°2
+<	java:S131""Add a default case to this switch.(ë´åİşÿÿÿÿ
+‚
+java:S1989"gHandle the following exceptions that could be thrown by "addCityAction": ServletException, IOException.(îÏ¾›úÿÿÿÿ
+‹
+java:S1989"oHandle the following exceptions that could be thrown by "redirectToEditCountry": ServletException, IOException.(ÏŸ’a8÷ë’°Ñ0
+ˆ
+java:S1989""kHandle the following exceptions that could be thrown by "editCountryAction": ServletException, IOException.(µ¨»×8Ù½“°Ñ0
+‡
+java:S1989%"lHandle the following exceptions that could be thrown by "redirectToEditCity": ServletException, IOException.(í„–¦øÿÿÿÿ
+~
+java:S1989("hHandle the following exceptions that could be thrown by "editCityAction": ServletException, IOException.(ãÌµò
+…
+java:S1989+"jHandle the following exceptions that could be thrown by "deleteCityAction": ServletException, IOException.(ï€×ñÿÿÿÿÿ
